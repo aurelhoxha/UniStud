@@ -12,3 +12,4 @@ public class MainActivity extends AppCompatActivity {
         //Aureli eshte Bos
     }
 }
+//Kot palidhje
