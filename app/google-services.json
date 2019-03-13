@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "698116504153",
+    "firebase_url": "https://unistud-1594c.firebaseio.com",
+    "project_id": "unistud-1594c",
+    "storage_bucket": "unistud-1594c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698116504153:android:918390452cb1d6a3",
+        "android_client_info": {
+          "package_name": "com.example.unistud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698116504153-38i0phaa434l6jt3a6hncdjt37j1bh39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUsWV5D2KjnWBLPLvZUa8SO83XDmb0Hys"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
