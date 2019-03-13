@@ -43,6 +43,7 @@
         android:inputType="textEmailAddress"
         android:padding="16dp"
         android:textColorHint="@color/login_form_details"
+        android:textColor="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/login_app_name" />
@@ -54,6 +55,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/edit_text_bg"
         android:drawableRight="@drawable/ic_eye"
+        android:textColor="@color/login_form_details"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="16dp"
