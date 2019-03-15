@@ -6,27 +6,37 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener{
 
     //Variables
-    private EditText mEmail, mPassword, mConfirmPassword;
+    private EditText mEmail, mPassword, mConfirmPassword, mUserFullName;
     private Button mSignUpButton;
     private TextView mSignInButton;
-
+    private RadioGroup mRadioGroup;
+    private RadioButton mRadioButton;
     //Firebase Connection Instances
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabase;
+    private StorageReference mStorageReference;
 
     //Other Variables
     private ProgressDialog mDialog;
@@ -36,13 +46,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_signup);
 
         //Intialiaze the Variables
+        mUserFullName     = (EditText)findViewById(R.id.signup_user_fullname);
         mEmail           = (EditText)findViewById(R.id.signup_email_address);
         mPassword        = (EditText)findViewById(R.id.signup_password1);
         mConfirmPassword = (EditText)findViewById(R.id.signup_password2);
+        mRadioGroup      = (RadioGroup)findViewById(R.id.account_type);
         mSignUpButton    = (Button)findViewById(R.id.signup_button);
         mSignInButton    = (TextView)findViewById(R.id.signup_sign_in_button);
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         mDialog = new ProgressDialog(this);
+        mStorageReference = FirebaseStorage.getInstance().getReference("DefaultFiles");
 
         //Set the Listeners
         mSignUpButton.setOnClickListener(this);
@@ -62,12 +76,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void userSignUp(){
 
-        String userEmail, userPassword, userConfirmPassword;
+        final String userEmail, userPassword, userConfirmPassword, userName;
+        userName            = mUserFullName.getText().toString().trim();
         userEmail           = mEmail.getText().toString().trim();
         userPassword        = mPassword.getText().toString().trim();
         userConfirmPassword = mConfirmPassword.getText().toString().trim();
 
-        if(TextUtils.isEmpty(userEmail)){
+
+        if(TextUtils.isEmpty(userName)){
+            Toast.makeText(SignUpActivity.this,"Enter Name",Toast.LENGTH_SHORT).show();
+            return;
+        } else if(TextUtils.isEmpty(userEmail)){
             Toast.makeText(SignUpActivity.this,"Enter Email",Toast.LENGTH_SHORT).show();
             return;
         } else if(TextUtils.isEmpty(userPassword)){
@@ -84,12 +103,26 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
+        // get selected radio button from radioGroup
+        int selectedId = mRadioGroup.getCheckedRadioButtonId();
+
+        // find the radiobutton by returned id
+        mRadioButton = (RadioButton) findViewById(selectedId);
         mDialog.setMessage("Creating User! Please wait...");
         mDialog.setCanceledOnTouchOutside(false);
         mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    String accountType =  mRadioButton.getText().toString().trim();
+                    String userId = mAuth.getCurrentUser().getUid();
+                    DatabaseReference currentUserTable = mDatabase.child(userId);
+
+                    //Set the Initial Data of the User
+                    currentUserTable.child("fullname").setValue(userName);
+                    currentUserTable.child("account_type").setValue(accountType);
+                    currentUserTable.child("email").setValue(userEmail);
+                    currentUserTable.child("profile_completed").setValue("false");
                     mDialog.dismiss();
                     startActivity(new Intent(SignUpActivity.this,MainActivity.class));
                 } else {

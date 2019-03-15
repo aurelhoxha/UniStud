@@ -26,7 +26,7 @@
         android:id="@+id/login_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:text="UniStud"
         android:textColor="#ffffff"
         android:textSize="45dp"
@@ -114,35 +114,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-    
-    <TextView
+
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button_facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign in with Facebook"
-        android:textColor="@color/login_form_details"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
         app:layout_constraintStart_toStartOf="@id/guideline_left_login"
         app:layout_constraintBottom_toTopOf="@id/login_button_google"
-        android:layout_marginBottom="20dp"
-        android:drawableStart="@drawable/ic_facebook"
-        android:drawablePadding="8dp"
-        />
+        android:layout_marginBottom="20dp"/>
 
-    <TextView
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/login_button_google"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign in with Google"
-        android:textColor="@color/login_form_details"
+        android:layout_height="40dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
         app:layout_constraintStart_toStartOf="@id/guideline_left_login"
         app:layout_constraintBottom_toTopOf="@id/footer_line"
-        android:layout_marginBottom="20dp"
-        android:drawableStart="@drawable/ic_gmail"
-        android:drawablePadding="8dp"
-        />
-
+        android:layout_marginBottom="20dp"/>
     <View
         android:id="@+id/line1"
         android:layout_width="120dp"
