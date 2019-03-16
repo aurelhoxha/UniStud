@@ -116,7 +116,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 if (task.isSuccessful()) {
                     String accountType =  mRadioButton.getText().toString().trim();
                     String userId = mAuth.getCurrentUser().getUid();
-                    DatabaseReference currentUserTable = mDatabase.child(userId);
+                    mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+                    DatabaseReference currentUserTable = mDatabase;
+                    if(accountType.equals("Student")){
+                        currentUserTable = currentUserTable.child("Students");
+                    }
+                    else{
+                        currentUserTable = currentUserTable.child("Organizations");
+                    }
+
+                    currentUserTable = currentUserTable.child(userId);
 
                     //Set the Initial Data of the User
                     currentUserTable.child("fullname").setValue(userName);
