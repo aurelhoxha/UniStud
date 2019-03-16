@@ -123,6 +123,20 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     currentUserTable.child("account_type").setValue(accountType);
                     currentUserTable.child("email").setValue(userEmail);
                     currentUserTable.child("profile_completed").setValue("false");
+                    currentUserTable.child("profile_photo").setValue("");
+                    if(accountType.equals("Organization")){
+                        currentUserTable.child("description").setValue("");
+                        currentUserTable.child("domain").setValue("");
+                        currentUserTable.child("location").setValue("");
+                    }
+                    else {
+                        currentUserTable.child("birthday").setValue("");
+                        currentUserTable.child("gender").setValue("");
+                        currentUserTable.child("university_country").setValue("");
+                        currentUserTable.child("university_city").setValue("");
+                        currentUserTable.child("university_name").setValue("");
+                        currentUserTable.child("mobile_phone").setValue("");
+                    }
                     mDialog.dismiss();
                     startActivity(new Intent(SignUpActivity.this,MainActivity.class));
                 } else {
