@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_signup);
 
         //Intialiaze the Variables
-        mUserFullName     = (EditText)findViewById(R.id.signup_user_fullname);
+        mUserFullName    = (EditText)findViewById(R.id.signup_user_fullname);
         mEmail           = (EditText)findViewById(R.id.signup_email_address);
         mPassword        = (EditText)findViewById(R.id.signup_password1);
         mConfirmPassword = (EditText)findViewById(R.id.signup_password2);
