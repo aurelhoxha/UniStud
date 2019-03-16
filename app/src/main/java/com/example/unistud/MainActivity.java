@@ -39,8 +39,11 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 
@@ -172,9 +175,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(MainActivity.this,"Login not successful!",Toast.LENGTH_LONG).show();
                 }else{
                     mDialog.dismiss();
-                    String userId = mAuth.getCurrentUser().getUid();
-                    DatabaseReference currentUserTable = mDatabase.child(userId);
-                    currentUserTable = currentUserTable.child("account_type");
+                    final String userId = mAuth.getCurrentUser().getUid();
+                    mDatabase.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.child("Organizations").child(userId).exists()){
+                                Organization mOrganization = dataSnapshot.child("Organizations").child(userId).getValue(Organization.class);
+                                String mAccountCompleted = mOrganization.getProfile_completed();
+
+                                //Redirect to Company Registration
+                                if(mAccountCompleted.equals("false")){
+
+                                }
+
+                                //Redirect to Company HomePage
+                                else {
+
+                                }
+                            }
+                            else {
+                                Student mStudent = dataSnapshot.child("Students").child(userId).getValue(Student.class);
+                                String mAccountCompleted = mStudent.getProfile_completed();
+
+                                //Redirect to Student Registration
+                                if(mAccountCompleted.equals("false")){
+
+                                }
+
+                                //Redirect to Student HomePage
+                                else {
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
