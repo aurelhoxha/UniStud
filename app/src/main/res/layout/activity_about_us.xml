@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_login"
+    tools:context=".Activities.AboutUs">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_left_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_right_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
+
+    <TextView
+        android:id="@+id/about_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="UniStud"
+        android:textColor="#ffffff"
+        android:textSize="45dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_login"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/team_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/title_contributors"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_login"
+        app:layout_constraintTop_toBottomOf="@id/about_app_name" />
+
+    <TextView
+        android:id="@+id/member1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/member_albjon"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_login"
+        app:layout_constraintTop_toBottomOf="@id/team_text" />
+
+    <TextView
+        android:id="@+id/member2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/member_arba"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_login"
+        app:layout_constraintTop_toBottomOf="@id/member1" />
+
+    <TextView
+        android:id="@+id/member3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/member_aurel"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_login"
+        app:layout_constraintTop_toBottomOf="@id/member2" />
+
+    <TextView
+        android:id="@+id/member4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/member_eniselda"
+        android:textColor="#ffffff"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_login"
+        app:layout_constraintTop_toBottomOf="@id/member3" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        tools:ignore="UseCompoundDrawables"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left_login"
+        app:layout_constraintTop_toBottomOf="@id/member4">
+
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/location"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.3"
+            android:layout_marginBottom="10dp"
+            android:text="@string/project_location"
+            android:textSize="25sp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

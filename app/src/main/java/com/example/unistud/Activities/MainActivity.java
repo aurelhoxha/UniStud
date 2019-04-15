@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LoginButton mLoginFacebookButton;
     private SignInButton mLoginGoogleButton;
     private ProgressDialog mDialog;
+    private String userId;
 
     //Facebook Variable
     private CallbackManager mCallbackManager;
@@ -120,12 +121,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mLoginGoogleButton.setOnClickListener(this);
 
         mAuth         = FirebaseAuth.getInstance();
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() != null) {
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
-                    finish();
+                    userId = mAuth.getCurrentUser().getUid();
+                    redirectUser();
                 }
             }
         };
@@ -176,48 +178,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(MainActivity.this,"Login not successful!",Toast.LENGTH_LONG).show();
                 }else{
                     mDialog.dismiss();
-                    final String userId = mAuth.getCurrentUser().getUid();
-                    mDatabase.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.child("Organizations").child(userId).exists()){
-                                Organization mOrganization = dataSnapshot.child("Organizations").child(userId).getValue(Organization.class);
-                                String mAccountCompleted = mOrganization.getProfile_completed();
-
-                                //Redirect to Company Registration
-                                if(mAccountCompleted.equals("false")){
-
-                                }
-
-                                //Redirect to Company HomePage
-                                else {
-
-                                }
-                            }
-                            else {
-                                Student mStudent = dataSnapshot.child("Students").child(userId).getValue(Student.class);
-                                String mAccountCompleted = mStudent.getProfile_completed();
-
-                                //Redirect to Student Registration
-                                if(mAccountCompleted.equals("false")){
-
-                                }
-
-                                //Redirect to Student HomePage
-                                else {
-
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
+                    userId = mAuth.getCurrentUser().getUid();
+                    redirectUser();
 
                 }
             }
@@ -306,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            Intent intent = new Intent(MainActivity.this, MenuActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -315,5 +277,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
+    }
+
+    private void redirectUser(){
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("Organizations").child(userId).exists()){
+                    Organization mOrganization = dataSnapshot.child("Organizations").child(userId).getValue(Organization.class);
+                    String mAccountCompleted = mOrganization.getProfile_completed();
+
+                    //Redirect to Company Registration
+                    if(mAccountCompleted.equals("false")){
+                        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    //Redirect to Company HomePage
+                    else {
+
+                    }
+                }
+                else {
+                    Student mStudent = dataSnapshot.child("Students").child(userId).getValue(Student.class);
+                    String mAccountCompleted = mStudent.getProfile_completed();
+
+                    //Redirect to Student Registration
+                    if(mAccountCompleted.equals("false")){
+
+                    }
+
+                    //Redirect to Student HomePage
+                    else {
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
