@@ -26,8 +26,8 @@
         <activity android:name=".Activities.AboutUs"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".Activities.MenuActivity"></activity>
-        <activity android:name=".Activities.OrganizationAddEvent"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activities.OrganizationAddEvent"></activity>
+        <activity android:name=".Activities.OrganizationAddInternship"></activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>

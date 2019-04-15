@@ -305,9 +305,15 @@ public class MenuActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //ADD EVENT ON CALENDAR
+        //ADD EVENT
         if (id == R.id.action_add_event) {
             addEventMethod();
+
+        }
+
+        //ADD EVENT
+        if (id == R.id.action_add_internship) {
+            addInternshipMethod();
 
         }
 
@@ -315,10 +321,14 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void addEventMethod() {
-
         Intent myIntent = new Intent(getApplicationContext(), OrganizationAddEvent.class);
         startActivityForResult(myIntent,1);
 
+    }
+
+    private void addInternshipMethod() {
+        Intent myIntent = new Intent(getApplicationContext(), OrganizationAddInternship.class);
+        startActivityForResult(myIntent,1);
     }
 
 
