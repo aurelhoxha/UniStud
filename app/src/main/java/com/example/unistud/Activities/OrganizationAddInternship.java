@@ -73,6 +73,7 @@ public class OrganizationAddInternship extends AppCompatActivity {
         mAddInternshipDate = (ImageButton)findViewById(R.id.internshipDateButton);
         mSubmitButton = (Button)findViewById(R.id.submitBtn);
 
+        mProgress    = new ProgressDialog(this);
         mInternshipSelectImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,7 +119,7 @@ public class OrganizationAddInternship extends AppCompatActivity {
     }
 
     private void startPostingInternship(){
-        mProgress.setMessage("Posting the Event ... ");
+        mProgress.setMessage("Posting the Internship ... ");
         mProgress.show();
         final String title_val  = mInternshipTitle.getText().toString().trim();
         final String desc_val   = mInternshipDesc.getText().toString().trim();
@@ -129,7 +130,7 @@ public class OrganizationAddInternship extends AppCompatActivity {
             filePath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    String downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                    String downloadUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
                     String userId = mFirebaseUser.getUid();
                     Internship mInternship = new Internship(title_val,desc_val,date_val, downloadUrl,userId);
                     mDatabase.push().setValue(mInternship);

@@ -135,7 +135,7 @@ public class OrganizationAddEvent extends AppCompatActivity {
             filePath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    String downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                    String downloadUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
                     String userId = mFirebaseUser.getUid();
                     Event mEvent = new Event(title_val,desc_val,date_val,loc_val, downloadUrl,userId);
                     mDatabase.push().setValue(mEvent);

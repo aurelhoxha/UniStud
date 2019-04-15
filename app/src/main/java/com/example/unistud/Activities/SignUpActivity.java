@@ -132,13 +132,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     currentUserTable.child("email").setValue(userEmail);
                     currentUserTable.child("profile_completed").setValue("false");
                     if(accountType.equals("Organization")){
-                        currentUserTable.child("profile_photo").setValue("https://firebasestorage.googleapis.com/v0/b/unistud-1594c.appspot.com/DefaultFiles/company_profile_photo.png");
+                        currentUserTable.child("profile_photo").setValue("com.google.android.gms.tasks.zzu@bb74bb2");
                         currentUserTable.child("description").setValue("");
                         currentUserTable.child("domain").setValue("");
                         currentUserTable.child("location").setValue("");
                     }
                     else {
-                        currentUserTable.child("profile_photo").setValue("https://firebasestorage.googleapis.com/v0/b/unistud-1594c.appspot.com/DefaultFiles/student_profile_photo.png");
+                        currentUserTable.child("profile_photo").setValue("com.google.android.gms.tasks.zzu@bb74bb2");
                         currentUserTable.child("birthday").setValue("");
                         currentUserTable.child("gender").setValue("");
                         currentUserTable.child("university_country").setValue("");
