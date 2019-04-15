@@ -24,6 +24,11 @@
     <string name="nav_about_us">About Us</string>
     <string name="nav_log_out">Logout</string>
 
+    <string name="action_add_internship">Add Internship</string>
+    <string name="action_add_event">Add Event</string>
+    <!--CALENDAR STRINGS-->
+    <string name="dialog_calendar">ADD NEW EVENT</string>
+
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="nav_organization_item_activity_titles">

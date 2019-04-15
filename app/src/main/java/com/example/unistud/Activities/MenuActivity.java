@@ -280,4 +280,46 @@ public class MenuActivity extends AppCompatActivity {
 
         super.onBackPressed();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+
+        // show menu only when Internship fragment is selected
+        if (navItemIndex == 1) {
+            getMenuInflater().inflate(R.menu.action_bar_internships, menu);
+        }
+        // show menu only when Events fragment is selected
+        if (navItemIndex == 2) {
+            getMenuInflater().inflate(R.menu.action_bar_events, menu);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //ADD EVENT ON CALENDAR
+        if (id == R.id.action_add_event) {
+            addEventMethod();
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void addEventMethod() {
+
+        Intent myIntent = new Intent(getApplicationContext(), OrganizationAddEvent.class);
+        startActivityForResult(myIntent,1);
+
+    }
+
+
 }
