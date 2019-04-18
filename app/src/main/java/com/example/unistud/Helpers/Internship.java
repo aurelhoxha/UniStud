@@ -1,7 +1,7 @@
 package com.example.unistud.Helpers;
 
 public class Internship {
-
+    private String internshipId;
     private String internshipTitle;
     private String internshipDesc;
     private String internshipDate;
@@ -12,7 +12,8 @@ public class Internship {
 
     }
 
-    public Internship(String internshipTitle, String internshipDesc, String internshipDate, String internshipImage, String internshipCreatorId) {
+    public Internship(String internshipId, String internshipTitle, String internshipDesc, String internshipDate, String internshipImage, String internshipCreatorId) {
+        this.internshipId = internshipId;
         this.internshipTitle = internshipTitle;
         this.internshipDesc = internshipDesc;
         this.internshipDate = internshipDate;
@@ -22,6 +23,15 @@ public class Internship {
 
     public String getInternshipTitle() {
         return internshipTitle;
+    }
+
+
+    public String getInternshipId() {
+        return internshipId;
+    }
+
+    public void setInternshipId(String internshipId) {
+        this.internshipId = internshipId;
     }
 
     public void setInternshipTitle(String internshipTitle) {

@@ -2,6 +2,7 @@ package com.example.unistud.Helpers;
 
 public class Event {
 
+    private String eventId;
     private String eventTitle;
     private String eventDesc;
     private String eventDate;
@@ -13,13 +14,22 @@ public class Event {
 
     }
 
-    public Event(String eventTitle, String eventDesc, String eventDate, String eventPlace, String eventImage, String eventCreatorId) {
+    public Event(String eventId, String eventTitle, String eventDesc, String eventDate, String eventPlace, String eventImage, String eventCreatorId) {
+        this.eventId = eventId;
         this.eventTitle = eventTitle;
         this.eventDesc = eventDesc;
         this.eventDate = eventDate;
         this.eventPlace = eventPlace;
         this.eventImage = eventImage;
         this.eventCreatorId = eventCreatorId;
+    }
+
+    public String getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 
     public String getEventTitle() {

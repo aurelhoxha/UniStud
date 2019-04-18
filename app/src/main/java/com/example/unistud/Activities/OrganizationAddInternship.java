@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,13 +18,19 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.unistud.Helpers.Event;
 import com.example.unistud.Helpers.Internship;
 import com.example.unistud.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -41,6 +49,7 @@ public class OrganizationAddInternship extends AppCompatActivity {
     private EditText mInternshipDesc;
     private TextView mInternshipDate;
     private ImageButton mAddInternshipDate;
+    private String downloadUrl;
 
     private Button mSubmitButton;
 
@@ -126,21 +135,51 @@ public class OrganizationAddInternship extends AppCompatActivity {
         final String date_val   = mInternshipDate.getText().toString().trim();
 
         if(!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val) && !TextUtils.isEmpty(date_val) && mImageUri != null ) {
-            StorageReference filePath = mStorage.child("Internship_Images").child(mImageUri.getLastPathSegment());
-            filePath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            final StorageReference filePath = mStorage.child("Internship_Images").child(mImageUri.getLastPathSegment());
+            final UploadTask mUploadTask = filePath.putFile(mImageUri);
+
+            mUploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    String message = e.toString();
+                    Toast.makeText(OrganizationAddInternship.this,"Error: " + message, Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    String downloadUrl = taskSnapshot.getStorage().getDownloadUrl().toString();
-                    String userId = mFirebaseUser.getUid();
-                    Internship mInternship = new Internship(title_val,desc_val,date_val, downloadUrl,userId);
-                    mDatabase.push().setValue(mInternship);
-                    mProgress.dismiss();
-                    Intent returnIntent = new Intent();
-                    setResult(Activity.RESULT_CANCELED, returnIntent);
-                    finish();
+                    Task<Uri> urlTask = mUploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if(!task.isSuccessful()){
+                                throw task.getException();
+                            }
+                            downloadUrl = filePath.getDownloadUrl().toString();
+                            return filePath.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if(task.isSuccessful()){
+                                Uri downloadUri = task.getResult();
+                                String userId = mFirebaseUser.getUid();
+                                String key = "";
+                                Internship mInternship = new Internship(key, title_val,desc_val,date_val, downloadUri.toString(),userId);
+                                mDatabase.push().setValue(mInternship, new DatabaseReference.CompletionListener() {
+                                    @Override
+                                    public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
+                                        String uniqueKey = databaseReference.getKey();
+                                        mDatabase.child(uniqueKey).child("internshipId").setValue(uniqueKey);
+                                    }
+                                });
+                                mProgress.dismiss();
+                                Intent returnIntent = new Intent();
+                                setResult(Activity.RESULT_CANCELED, returnIntent);
+                                finish();
+                            }
+                        }
+                    });
                 }
             });
-
         }
     }
 

@@ -11,4 +11,21 @@
     <color name="login_form_details_medium">#66ffffff</color>
 
     <color name="grayColor">#c2c2c2</color>
+
+    <!-- Event Profile Colors -->
+    <color name="profilePrimary">#49BEFF</color>
+    <color name="profilePrimaryDark">#65DCE5</color>
+    <color name="profileAccent">#0D5D98</color>
+    <color name="profileAddress">#2F7092</color>
+    <color name="profileFollowers">#0D5D98</color>
+    <color name="profileHeadings">#3797CF</color>
+    <color name="profileSolidCircle">#AAFFFFFF</color>
+    <color name="profileCircleBorder">#30FFFFFF</color>
+    <color name="profileGradEnd">#67EFC8</color>
+    <color name="profileGradStart">#63C9FF</color>
+    <color name="profileFollowersBg">#65DCE5</color>
+    <color name="profileFollowingBg">#65DCE5</color>
+    <color name="profileGrey">#E5E5E5</color>
+
+
 </resources>
