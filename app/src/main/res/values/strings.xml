@@ -20,6 +20,9 @@
     <string name="nav_organization_internships">Internships</string>
     <string name="nav_organization_events">Events</string>
     <string name="nav_organization_profile">Profile</string>
+    <string name="nav_student_university">Universities</string>
+    <string name="nav_student_tutorials">Tutorials</string>
+    <string name="nav_student_trade">UniTrade</string>
 
     <string name="nav_about_us">About Us</string>
     <string name="nav_log_out">Logout</string>
@@ -34,6 +37,17 @@
     <string-array name="nav_organization_item_activity_titles">
         <item>Home</item>
         <item>Internships</item>
+        <item>Events</item>
+        <item>Profile</item>
+    </string-array>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_student_item_activity_titles">
+        <item>Home</item>
+        <item>Universities</item>
+        <item>Internships</item>
+        <item>Tutorials</item>
+        <item>UniTrade</item>
         <item>Events</item>
         <item>Profile</item>
     </string-array>

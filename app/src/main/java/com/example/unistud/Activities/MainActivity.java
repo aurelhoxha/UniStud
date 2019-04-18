@@ -305,7 +305,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     //Redirect to Student Registration
                     if(mAccountCompleted.equals("false")){
-
+                        Intent intent = new Intent(MainActivity.this, StudentMenuActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
 
                     //Redirect to Student HomePage

@@ -37,6 +37,7 @@
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".Activities.OrganizationInternshipProfile"
             android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".Activities.StudentMenuActivity"></activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>

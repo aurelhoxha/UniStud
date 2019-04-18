@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_student_home"
+        android:icon="@drawable/home_icon"
+        android:title="@string/nav_organization_home" />
+    <item
+        android:id="@+id/nav_student_university"
+        android:icon="@drawable/univeristy_icon"
+        android:title="@string/nav_student_university" />
+    <item
+        android:id="@+id/nav_student_interships"
+        android:icon="@drawable/internship_icon"
+        android:title="@string/nav_organization_internships" />
+    <item
+        android:id="@+id/nav_student_tutorials"
+        android:icon="@drawable/tutorial_icon"
+        android:title="@string/nav_student_tutorials" />
+    <item
+        android:id="@+id/nav_student_trade"
+        android:icon="@drawable/trade_icon"
+        android:title="@string/nav_student_trade" />
+    <item
+        android:id="@+id/nav_student_events"
+        android:icon="@drawable/event_icon"
+        android:title="@string/nav_organization_events" />
+
+    <item
+        android:id="@+id/nav_student_profile"
+        android:icon="@drawable/profile_icon"
+        android:title="@string/nav_organization_profile" />
+
+</group>
+
+<item android:title="Other">
+    <menu>
+        <item
+            android:id="@+id/nav_about_us"
+            android:title="@string/nav_about_us" />
+        <item
+            android:id="@+id/nav_log_out"
+            android:title="@string/nav_log_out" />
+    </menu>
+</item>
+
+</menu>
