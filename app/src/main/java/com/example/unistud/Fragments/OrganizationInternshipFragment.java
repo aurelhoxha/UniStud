@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.unistud.Activities.OrganizationAddInternship;
 import com.example.unistud.Activities.OrganizationEventProfile;
 import com.example.unistud.Activities.OrganizationInternshipProfile;
 import com.example.unistud.Helpers.Event;
@@ -25,6 +26,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class OrganizationInternshipFragment extends Fragment {
 
@@ -41,6 +44,7 @@ public class OrganizationInternshipFragment extends Fragment {
     Query mQuery;
 
     public static final String INTERNSHIP_ID = "InternshipId";
+    public static final String ORGANIZATION_ID = "OrganizationID";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,14 +72,16 @@ public class OrganizationInternshipFragment extends Fragment {
                 holder.setInternshipDate(model.getInternshipDate());
                 holder.setInternshipImage(getActivity(),model.getInternshipImage());
                 holder.setmInternshipId(model.getInternshipId());
+                holder.setmOrganizationId(model.getInternshipCreatorId());
                 final String internshipId = holder.getmInternshipId();
+                final String organizationId = holder.getmOrganizationId();
                 holder.getmViewInternship().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("CHECKING", "Button Pressed for InternshipId: " + internshipId);
-                        Intent intent = new Intent(getActivity(), OrganizationInternshipProfile.class);
+                        Intent intent = new Intent(getApplicationContext(), OrganizationInternshipProfile.class);
                         intent.putExtra(INTERNSHIP_ID, internshipId);
-                        startActivity(intent);
+                        intent.putExtra(ORGANIZATION_ID,organizationId);
+                        startActivityForResult(intent,1);
                     }
                 });
             }

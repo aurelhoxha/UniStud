@@ -16,7 +16,7 @@
         android:adjustViewBounds="true"
         android:background="#ffffff"
         android:scaleType="centerCrop"
-        android:src="@drawable/add_image" />
+        android:src="@drawable/upload_icon" />
 
     <EditText
         android:id="@+id/event_title_field"

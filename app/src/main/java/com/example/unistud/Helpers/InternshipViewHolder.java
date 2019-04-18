@@ -14,6 +14,7 @@ public class InternshipViewHolder extends RecyclerView.ViewHolder {
     View mView;
     private TextView mViewInternship;
     private String mInternshipId;
+    private String mOrganizationId;
 
     public InternshipViewHolder(View itemView) {
         super(itemView);
@@ -50,5 +51,13 @@ public class InternshipViewHolder extends RecyclerView.ViewHolder {
 
     public String getmInternshipId() {
         return mInternshipId;
+    }
+
+    public String getmOrganizationId() {
+        return mOrganizationId;
+    }
+
+    public void setmOrganizationId(String mOrganizationId) {
+        this.mOrganizationId = mOrganizationId;
     }
 }

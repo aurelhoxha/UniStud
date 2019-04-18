@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.unistud.Activities.OrganizationEventProfile;
+import com.example.unistud.Activities.OrganizationInternshipProfile;
 import com.example.unistud.Helpers.Event;
 import com.example.unistud.Helpers.EventViewHolder;
 import com.example.unistud.R;
@@ -28,6 +29,8 @@ import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class OrganizationEventFragment extends Fragment {
 
@@ -76,10 +79,9 @@ public class OrganizationEventFragment extends Fragment {
                 holder.getmViewEvent().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("CHECKING", "Button Pressed for EventId: " + eventId);
-                        Intent intent = new Intent(getActivity(), OrganizationEventProfile.class);
+                        Intent intent = new Intent(getApplicationContext(), OrganizationEventProfile.class);
                         intent.putExtra(EVENT_ID, eventId);
-                        startActivity(intent);
+                        startActivityForResult(intent,1);
 
                     }
                 });

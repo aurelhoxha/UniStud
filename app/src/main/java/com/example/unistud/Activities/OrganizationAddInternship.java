@@ -13,10 +13,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,11 +46,11 @@ public class OrganizationAddInternship extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
-    private ImageButton mInternshipSelectImage;
+    private ImageView mInternshipSelectImage;
     private EditText mInternshipTitle;
     private EditText mInternshipDesc;
     private TextView mInternshipDate;
-    private ImageButton mAddInternshipDate;
+    private ImageView mAddInternshipDate;
     private String downloadUrl;
 
     private Button mSubmitButton;
@@ -65,6 +67,7 @@ public class OrganizationAddInternship extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organization_add_internship);
 
@@ -75,11 +78,11 @@ public class OrganizationAddInternship extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         //Connect the Attributes to XML
-        mInternshipSelectImage = (ImageButton)findViewById(R.id.internship_image_select);
+        mInternshipSelectImage = (ImageView)findViewById(R.id.internship_image_select);
         mInternshipTitle = (EditText)findViewById(R.id.internship_title_field);
         mInternshipDesc = (EditText)findViewById(R.id.internship_desc_field);
         mInternshipDate = (TextView)findViewById(R.id.internship_pick_date);
-        mAddInternshipDate = (ImageButton)findViewById(R.id.internshipDateButton);
+        mAddInternshipDate = (ImageView)findViewById(R.id.internshipDateButton);
         mSubmitButton = (Button)findViewById(R.id.submitBtn);
 
         mProgress    = new ProgressDialog(this);

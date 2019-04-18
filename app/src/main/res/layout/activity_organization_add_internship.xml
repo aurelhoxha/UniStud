@@ -6,7 +6,7 @@
     tools:context=".Activities.OrganizationAddInternship"
     android:orientation="vertical">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/internship_image_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +16,7 @@
         android:adjustViewBounds="true"
         android:background="#ffffff"
         android:scaleType="centerCrop"
-        android:src="@drawable/add_image" />
+        android:src="@drawable/upload_icon" />
 
     <EditText
         android:id="@+id/internship_title_field"
@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:ems="10"/>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/internshipDateButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
