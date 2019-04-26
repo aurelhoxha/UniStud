@@ -29,6 +29,7 @@
 
     <string name="action_add_internship">Add Internship</string>
     <string name="action_add_event">Add Event</string>
+    <string name="action_add_tutorial">Add Tutorial</string>
     <!--CALENDAR STRINGS-->
     <string name="dialog_calendar">ADD NEW EVENT</string>
 

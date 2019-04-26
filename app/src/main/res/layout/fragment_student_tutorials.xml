@@ -4,20 +4,39 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/student_tutorial_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
+
         <Button
-            android:id="@+id/student_event_profile_save"
+            android:id="@+id/student_play_tutorial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/profileHeadings"
+            android:background="#180AA8"
+            android:text="Play Livestream"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/student_start_tutorial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#180AA8"
             android:text="Start Livestream"
             android:textColor="#ffffff"/>
+
+
+
     </LinearLayout>
 
 </RelativeLayout>

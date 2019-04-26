@@ -62,7 +62,6 @@ public class StudentEventFragment extends Fragment {
                         Intent intent = new Intent(getApplicationContext(), StudentEventProfile.class);
                         intent.putExtra(EVENT_ID, eventId);
                         startActivityForResult(intent,1);
-
                     }
                 });
             }

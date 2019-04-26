@@ -42,6 +42,7 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
         ImageView post_image = (ImageView)mView.findViewById(R.id.event_image_view);
         Picasso.get().load(image).into(post_image);
     }
+
     public void setmEventId(String mEventId){
         this.mEventId = mEventId;
     }
@@ -49,6 +50,7 @@ public class EventViewHolder extends RecyclerView.ViewHolder {
     public TextView getmViewEvent(){
         return mViewEvent;
     }
+
     public String getmEventId(){
         return mEventId;
     }
