@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activities.StudentRegister1">
+
+    <RelativeLayout
+        android:id="@+id/profile_relative1"
+        android:layout_width="match_parent"
+        android:background="@drawable/background_login"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/profile_relative_id"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/profile_circle_border">
+            <ImageButton
+                android:id="@+id/user_profile_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:adjustViewBounds="true"
+                android:layout_margin="12dp"
+                android:padding="3dp"
+                android:background="@drawable/profile_circle"
+                android:scaleType="centerInside" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/register_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_relative_id"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-light"
+            android:layout_marginTop="5sp"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="293dp"
+        android:layout_below="@id/profile_relative1"
+        android:layout_marginTop="-8dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="369dp">
+
+            <LinearLayout
+                android:id="@+id/user_profile_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Phone Number:"
+                        android:textColor="@color/profileHeadings"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/student_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:inputType="number"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/gender"
+                    android:layout_width="396dp"
+                    android:layout_height="80dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <RadioGroup
+                        android:id="@+id/student_gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:padding="10dp"
+                        android:textColor="@color/profileHeadings">
+
+                        <RadioButton
+                            android:id="@+id/radioButton1"
+                            android:layout_width="93dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Male"
+                            android:textColor="@color/profileHeadings" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton2"
+                            android:layout_width="118dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Female"
+                            android:textColor="@color/profileHeadings" />
+
+                        <RadioButton
+                            android:id="@+id/radioButton3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Other"
+                            android:textColor="@color/profileHeadings" />
+                    </RadioGroup>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Birthday:"
+                        android:textColor="@color/profileHeadings"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:id="@+id/birthday_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/student_phone"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/birthday_pick_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="43dp"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="Set The Date" />
+
+                        <ImageButton
+                            android:id="@+id/birthdayDateButton"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/add" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/next_Student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/profileHeadings"
+                android:text="Next"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
