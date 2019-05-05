@@ -92,7 +92,6 @@ public class OrganizationEventProfile extends AppCompatActivity {
                 Picasso.get().load(eventImage).into(mEventImage);
                 mEventTitle.setText(eventTitle);
                 mEventLocation.setText(eventLocation);
-                mEventLocation.setText(eventLocation);
                 mEventDesc.setText(eventDesc);
                 mEventLocationEditText.setText(eventLocation);
                 mEventDateTextView.setText(eventDate);
