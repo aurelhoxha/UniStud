@@ -82,27 +82,26 @@ public class PlayVideo extends AppCompatActivity {
         tutorialLINK = intent.getStringExtra(TUTORIAL_LINK);
         tutorialStatus = intent.getStringExtra(TUTORIAL_STATUS);
 
-        if(tutorialStatus.equals("recording")){
+
+
+        if(tutorialStatus.equals("live")){
             link = "http://" + getResources().getString(R.string.server_ip) + ":1935/live/myStream/playlist.m3u8";
+            videoUri = Uri.parse(link);
             videoSource = new HlsMediaSource(videoUri,
                     dataSourceFactory, 3, null, null);
         }
         else {
             link = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
-            videoSource = new ExtractorMediaSource(videoUri,
-                    dataSourceFactory, null, null, null);
+            if(!link.equals("")) {
+                videoUri = Uri.parse(link);
+                videoSource = new ExtractorMediaSource(videoUri,
+                        dataSourceFactory, extractorsFactory, null, null);
+            }
         }
-        //videoUri = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
 
-
-        //videoUri = Uri.parse(link);
-
-
-        //videoSource = new HlsMediaSource(videoUri,
-        //dataSourceFactory, 3, null, null);
-
-        // Prepare the player with the source.
-        player.prepare(videoSource);
+        if(videoSource != null) {
+            player.prepare(videoSource);
+        }
 
     }
 
@@ -115,4 +114,5 @@ public class PlayVideo extends AppCompatActivity {
         }
     }
 }
+
 

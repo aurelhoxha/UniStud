@@ -1,7 +1,8 @@
+//CLASS FINISHED
+
 package com.example.unistud.Activities;
 
 import android.Manifest;
-import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,7 +17,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.unistud.R;
-import com.google.android.gms.common.api.Response;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.wowza.gocoder.sdk.api.WowzaGoCoder;
 import com.wowza.gocoder.sdk.api.broadcast.WOWZBroadcast;
 import com.wowza.gocoder.sdk.api.broadcast.WOWZBroadcastConfig;
@@ -29,10 +31,7 @@ import com.wowza.gocoder.sdk.api.status.WOWZState;
 import com.wowza.gocoder.sdk.api.status.WOWZStatus;
 import com.wowza.gocoder.sdk.api.status.WOWZStatusCallback;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import static com.example.unistud.Fragments.StudentTutorialFragment.TUTORIAL_ID;
 
 public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusCallback, View.OnClickListener {
 
@@ -50,6 +49,13 @@ public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusC
 
     // The broadcast configuration settings
     private WOWZBroadcastConfig goCoderBroadcastConfig;
+
+    //Intent and variables to save CreatorID and TutorialID in order to make changes to database accordingly
+    Intent intent;
+    private String tutorialId;
+    private String creatorId;
+    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceURL;
 
     // Properties needed for Android 6+ permissions handling
     private static final int PERMISSIONS_REQUEST_CODE = 0x1;
@@ -105,6 +111,14 @@ public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusC
         // Associate the onClick() method as the callback for the broadcast button's click event
         Button broadcastButton = (Button) findViewById(R.id.broadcast_button);
         broadcastButton.setOnClickListener(this);
+
+        //Initialize Intent
+        intent = getIntent();
+        tutorialId = intent.getStringExtra(TUTORIAL_ID);
+
+        //Get a database reference to the tutorial in order to change states
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Tutorials").child(tutorialId).child("tutorialStatus");
+
     }
 
     //
@@ -206,14 +220,17 @@ public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusC
             case WOWZState.RUNNING:
                 statusMessage.append("Streaming is active");
 
-                //Change status to "live" now that we are recording the livestream
-                Intent intent = getIntent();
-
-
+                //Change status to "live" now that we are recording the live stream
+                databaseReference.setValue("live");
                 break;
 
             case WOWZState.STOPPING:
                 statusMessage.append("Live stream shutting down");
+
+                //Change status to saved
+                databaseReference.setValue("saved");
+                databaseReferenceURL = FirebaseDatabase.getInstance().getReference().child("Tutorials").child(tutorialId).child("tutorialURL");
+                databaseReferenceURL.setValue("");
                 break;
 
             case WOWZState.IDLE:
@@ -269,3 +286,4 @@ public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusC
     }
 
 }
+

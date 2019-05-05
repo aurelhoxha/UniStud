@@ -1,3 +1,4 @@
+
 package com.example.unistud.Fragments;
 
 import android.content.Intent;
@@ -10,12 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.example.unistud.Activities.PlayVideo;
-import com.example.unistud.Activities.StudentEventProfile;
 import com.example.unistud.Activities.TutorialLiveStream;
-import com.example.unistud.Helpers.Event;
-import com.example.unistud.Helpers.EventViewHolder;
 import com.example.unistud.Helpers.Tutorial;
 import com.example.unistud.Helpers.TutorialViewHolder;
 import com.example.unistud.R;
@@ -33,6 +30,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.unistud.Activities.OrganizationEventProfile;
 import com.example.unistud.Activities.StudentEventProfile;
@@ -64,6 +62,10 @@ public class StudentTutorialFragment extends Fragment {
     public static final String TUTORIAL_STATUS = "TutorialStatus";
     public static final String TUTORIAL_LINK = "TutorialLink";
 
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private String userId;
+
     //public static final
 
     @Override
@@ -71,6 +73,11 @@ public class StudentTutorialFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View myFragmentView = inflater.inflate(R.layout.fragment_student_tutorials, container, false);
+
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        userId = mFirebaseUser.getUid();
 
         startLivestreamButton = myFragmentView.findViewById(R.id.student_start_tutorial);
         startLivestreamButton.setOnClickListener(new View.OnClickListener() {
@@ -98,42 +105,41 @@ public class StudentTutorialFragment extends Fragment {
                 holder.setmTutorialId(model.getTutorialId());
                 holder.setTutorialDesc(model.getTutorialDesc());
                 //final String tutorialLink = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
-                final String tutorialLink = model.getTutorialURL();
+                final String tutorialID = model.getTutorialId();
                 final String tutorialStatus = model.getTutorialStatus();
                 final String tutorialCreator = model.getTutorialCreatorId();
+                final String tutorialURL = model.getTutorialURL();
 
                 holder.getmViewTutorial().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {//
                         //If the current user is the owner and status is 0 go to record it
-                        if(model.getTutorialStatus().equals("added")){
+                        if(model.getTutorialStatus().equals("added") && userId.equals(tutorialCreator)){
                             //Record it for first time
                             Intent intent = new Intent(getApplicationContext(), TutorialLiveStream.class);
-                            //intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
+                            intent.putExtra(TUTORIAL_ID, tutorialID);
                             startActivityForResult(intent,1);
                         }
+                        else if(model.getTutorialStatus().equals("added") && !userId.equals(tutorialCreator)){
+                            Toast.makeText(getApplicationContext(),"Sorry! This tutorial is not available yet!", Toast.LENGTH_LONG).show();
+                        }
 
-                        //User is not owner and status is 0
-                        //                    else if(){
-                        //
-                        //                        Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
-                        //                        intent.putExtra(TUTORIAL_ID, tutorialLink);
-                        //                        startActivityForResult(intent,1);
-                        //                    }
-
-                        //Status is 1
+                        //Status is 1 or 2
                         else if(model.getTutorialStatus().equals("live")){
                             Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
                             intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
                             startActivityForResult(intent,1);
                         }
 
-                        //Status is 2
                         else if(model.getTutorialStatus().equals("saved")){
-                            Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
-                            intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
-                            //intent.putExtra(TUTORIAL_LINK, tutorialLink);
-                            startActivityForResult(intent,1);
+                            if(!tutorialURL.equals("")) {
+                                Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
+                                intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
+                                startActivityForResult(intent, 1);
+                            }
+                            else {
+                                Toast.makeText(getApplicationContext(),"Sorry! We are processing the video.", Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
                 });
@@ -154,3 +160,4 @@ public class StudentTutorialFragment extends Fragment {
         return myFragmentView;
     }
 }
+
