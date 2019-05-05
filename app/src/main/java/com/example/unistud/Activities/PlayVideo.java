@@ -13,6 +13,7 @@ import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelection;
@@ -25,6 +26,8 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
 import static com.example.unistud.Fragments.StudentTutorialFragment.TUTORIAL_ID;
+import static com.example.unistud.Fragments.StudentTutorialFragment.TUTORIAL_LINK;
+import static com.example.unistud.Fragments.StudentTutorialFragment.TUTORIAL_STATUS;
 
 public class PlayVideo extends AppCompatActivity {
 
@@ -32,12 +35,17 @@ public class PlayVideo extends AppCompatActivity {
     private static final java.lang.String POS_KEY = "pos";
     private SimpleExoPlayer player;
     private String tutorialLINK;
+    private String tutorialStatus;
+    private Intent intent;
+    private Uri videoUri;
+    private String link;
+    private MediaSource videoSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_video);
-
+        intent = getIntent();
     }
 
     @Override
@@ -45,7 +53,6 @@ public class PlayVideo extends AppCompatActivity {
         super.onStart();
         initializePlayer();
     }
-
 
     private void initializePlayer(){
         // Create a default TrackSelector
@@ -66,19 +73,33 @@ public class PlayVideo extends AppCompatActivity {
 
         // Produces DataSource instances through which media data is loaded.
         DataSource.Factory dataSourceFactory =
-                new DefaultDataSourceFactory(this, Util.getUserAgent(this, "MovingWater"));
+                new DefaultDataSourceFactory(this, Util.getUserAgent(this,"UniStud"));
 
         // Produces Extractor instances for parsing the media data.
         ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
 
         // This is the MediaSource representing the media to be played.
-        Intent intent = getIntent();
-        tutorialLINK = intent.getStringExtra(TUTORIAL_ID);
-        //Uri videoUri = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
-        Uri videoUri = Uri.parse(tutorialLINK);
+        tutorialLINK = intent.getStringExtra(TUTORIAL_LINK);
+        tutorialStatus = intent.getStringExtra(TUTORIAL_STATUS);
 
-        MediaSource videoSource = new ExtractorMediaSource(videoUri,
-                dataSourceFactory, extractorsFactory, null, null);
+        if(tutorialStatus.equals("recording")){
+            link = "http://" + getResources().getString(R.string.server_ip) + ":1935/live/myStream/playlist.m3u8";
+            videoSource = new HlsMediaSource(videoUri,
+                    dataSourceFactory, 3, null, null);
+        }
+        else {
+            link = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
+            videoSource = new ExtractorMediaSource(videoUri,
+                    dataSourceFactory, null, null, null);
+        }
+        //videoUri = Uri.parse("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+
+
+        //videoUri = Uri.parse(link);
+
+
+        //videoSource = new HlsMediaSource(videoUri,
+        //dataSourceFactory, 3, null, null);
 
         // Prepare the player with the source.
         player.prepare(videoSource);
@@ -88,9 +109,10 @@ public class PlayVideo extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        if (player!=null) {
+        if (player != null) {
             player.release();
             player = null;
         }
     }
 }
+

@@ -6,29 +6,16 @@
     tools:context=".Activities.StudentAddTutorial"
     android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/tutorial_image_select"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="10dp"
-        android:adjustViewBounds="true"
-        android:background="#ffffff"
-        android:scaleType="centerCrop"
-        android:src="@drawable/upload_icon" />
-
     <EditText
         android:id="@+id/tutorial_title_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tutorial_image_select"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/input_background"
-        android:hint="Tutorial Title ..."
+        android:hint="Tutorial Title"
         android:padding="15dp"
         android:singleLine="true" />
 
@@ -43,23 +30,9 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/input_background"
         android:ems="10"
-        android:hint="Tutorial Description ..."
+        android:hint="Tutorial Description"
         android:inputType="textMultiLine"
         android:padding="15dp" />
-
-    <EditText
-        android:id="@+id/tutorial_location_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tutorial_desc_field"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/input_background"
-        android:hint="Tutorial Location ..."
-        android:padding="15dp"
-        android:singleLine="true" />
 
     <LinearLayout
         android:id="@+id/tutorial_date_group"
@@ -68,7 +41,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@id/tutorial_location_field"
+        android:layout_below="@id/tutorial_desc_field"
         android:orientation="horizontal"
         >
 

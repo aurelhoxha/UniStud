@@ -54,7 +54,6 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class StudentTutorialFragment extends Fragment {
 
     private Button startLivestreamButton;
-    private Button playLiveStreamButton;
 
     private RecyclerView mTutorialList;
     private DatabaseReference databaseReference;
@@ -62,21 +61,16 @@ public class StudentTutorialFragment extends Fragment {
     private FirebaseRecyclerAdapter<Tutorial, TutorialViewHolder> adapter;
 
     public static final String TUTORIAL_ID = "TutorialId";
+    public static final String TUTORIAL_STATUS = "TutorialStatus";
+    public static final String TUTORIAL_LINK = "TutorialLink";
+
+    //public static final
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View myFragmentView = inflater.inflate(R.layout.fragment_student_tutorials, container, false);
-
-        playLiveStreamButton = myFragmentView.findViewById(R.id.student_play_tutorial);
-        playLiveStreamButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), PlayVideo.class);
-                startActivityForResult(intent2,1);
-            }
-        });
 
         startLivestreamButton = myFragmentView.findViewById(R.id.student_start_tutorial);
         startLivestreamButton.setOnClickListener(new View.OnClickListener() {
@@ -87,32 +81,60 @@ public class StudentTutorialFragment extends Fragment {
             }
         });
 
-
-
         //RecyclerView
         mTutorialList = myFragmentView.findViewById(R.id.student_tutorial_list);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Tutorials");
         mTutorialList.setHasFixedSize(true);
 
-        options = new FirebaseRecyclerOptions.Builder<Tutorial>()
-                .setQuery(databaseReference, Tutorial.class).build();
+        options = new FirebaseRecyclerOptions.Builder<Tutorial>().setQuery(databaseReference, Tutorial.class).build();
 
         adapter = new FirebaseRecyclerAdapter<Tutorial, TutorialViewHolder> (options) {
 
             @Override
-            protected void onBindViewHolder(@NonNull TutorialViewHolder holder, int position, @NonNull Tutorial model) {
+            protected void onBindViewHolder(@NonNull TutorialViewHolder holder, int position, @NonNull final Tutorial model) {
                 holder.setTutorialTitle(model.getTutorialTitle());
                 holder.setTutorialDate(model.getTutorialDate());
                 //holder.setTutorialURL(model.getTutorialURL());
                 holder.setmTutorialId(model.getTutorialId());
+                holder.setTutorialDesc(model.getTutorialDesc());
                 //final String tutorialLink = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
                 final String tutorialLink = model.getTutorialURL();
+                final String tutorialStatus = model.getTutorialStatus();
+                final String tutorialCreator = model.getTutorialCreatorId();
+
                 holder.getmViewTutorial().setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
-                        intent.putExtra(TUTORIAL_ID, tutorialLink);
-                        startActivityForResult(intent,1);
+                    public void onClick(View v) {//
+                        //If the current user is the owner and status is 0 go to record it
+                        if(model.getTutorialStatus().equals("added")){
+                            //Record it for first time
+                            Intent intent = new Intent(getApplicationContext(), TutorialLiveStream.class);
+                            //intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
+                            startActivityForResult(intent,1);
+                        }
+
+                        //User is not owner and status is 0
+                        //                    else if(){
+                        //
+                        //                        Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
+                        //                        intent.putExtra(TUTORIAL_ID, tutorialLink);
+                        //                        startActivityForResult(intent,1);
+                        //                    }
+
+                        //Status is 1
+                        else if(model.getTutorialStatus().equals("live")){
+                            Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
+                            intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
+                            startActivityForResult(intent,1);
+                        }
+
+                        //Status is 2
+                        else if(model.getTutorialStatus().equals("saved")){
+                            Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
+                            intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
+                            //intent.putExtra(TUTORIAL_LINK, tutorialLink);
+                            startActivityForResult(intent,1);
+                        }
                     }
                 });
             }
@@ -132,4 +154,3 @@ public class StudentTutorialFragment extends Fragment {
         return myFragmentView;
     }
 }
-

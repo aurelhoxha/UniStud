@@ -32,8 +32,14 @@ public class TutorialViewHolder extends RecyclerView.ViewHolder {
 
     public void setTutorialDate(String date)
     {
-        TextView post_desc = (TextView)mView.findViewById(R.id.tutorial_date_text);
-        post_desc.setText(date);
+        TextView post_date = (TextView)mView.findViewById(R.id.tutorial_date_text);
+        post_date.setText(date);
+    }
+
+    public void setTutorialDesc(String desc)
+    {
+        TextView post_desc = (TextView)mView.findViewById(R.id.tutorial_desc_text);
+        post_desc.setText(desc);
     }
 
 

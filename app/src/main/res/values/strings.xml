@@ -26,6 +26,7 @@
 
     <string name="nav_about_us">About Us</string>
     <string name="nav_log_out">Logout</string>
+    <string name="server_ip">139.179.206.73</string>
 
     <string name="action_add_internship">Add Internship</string>
     <string name="action_add_event">Add Event</string>

@@ -8,15 +8,15 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#344955"
+        android:focusableInTouchMode="false"
         android:orientation="horizontal"
+        android:visibility="visible"
         tools:ignore="UselessParent">
 
-
-
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="7dp"
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:textColor="#747474"
+                android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -40,21 +40,31 @@
                 android:layout_marginTop="25dp"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:textColor="@color/colorPrimary"
-                android:textSize="10sp" />
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tutorial_desc_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tutorial_proceed_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Play"
-            android:textColor="#747474"
-            android:textSize="15sp"
-            android:gravity="right"
             android:layout_gravity="center"
-            android:layout_marginRight="25dp"/>
+            android:layout_marginRight="25dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Play"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
