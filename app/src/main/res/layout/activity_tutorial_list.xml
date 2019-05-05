@@ -9,11 +9,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#344955"
         android:focusableInTouchMode="false"
         android:orientation="horizontal"
         android:visibility="visible"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:background="@color/tutorialColor"
+        android:layout_marginBottom="2dp">
 
         <LinearLayout
             android:layout_width="290dp"

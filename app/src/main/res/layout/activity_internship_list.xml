@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:background="@color/internshipColor"
+        android:layout_marginBottom="2dp">
 
 
         <ImageView

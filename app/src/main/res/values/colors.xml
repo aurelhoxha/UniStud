@@ -30,6 +30,10 @@
     <color name="whiteColor">#ffffff</color>
 
     <color name="eventColor">#FFEEB994</color>
+    <color name="tutorialColor">#FFAED7E4</color>
+    <color name="tradeColor">#FFE13D40</color>
+    <color name="uniColor">#346111</color>
+    <color name="internshipColor">#FFABDF89</color>
 
 
 </resources>
