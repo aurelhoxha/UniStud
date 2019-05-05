@@ -104,7 +104,7 @@ public class StudentEventProfile extends AppCompatActivity {
             public void onClick(View v) {
                 mProgress.setMessage("Saving the Event ... ");
                 mProgress.show();
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events").child(mEventId).child("eventName");
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events").child(mEventId).child("event_name");
                 databaseReference.setValue(eventTitle);
                 mProgress.dismiss();
             }

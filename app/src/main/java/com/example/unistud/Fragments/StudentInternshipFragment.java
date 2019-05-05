@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.unistud.Activities.OrganizationInternshipProfile;
 import com.example.unistud.Activities.StudentEventProfile;
+import com.example.unistud.Activities.StudentInternshipProfile;
 import com.example.unistud.Helpers.Internship;
 import com.example.unistud.Helpers.InternshipViewHolder;
 import com.example.unistud.R;
@@ -58,7 +59,7 @@ public class StudentInternshipFragment extends Fragment {
                 holder.getmViewInternship().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), StudentEventProfile.class);
+                        Intent intent = new Intent(getApplicationContext(), StudentInternshipProfile.class);
                         intent.putExtra(INTERNSHIP_ID, internshipId);
                         startActivityForResult(intent,1);
                     }
