@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:background="@color/eventColor"
+        android:layout_marginBottom="2dp">
 
 
         <ImageView
@@ -35,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"
-                android:textColor="#747474"
+                android:textColor="@color/whiteColor"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -56,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Open"
-            android:textColor="#747474"
+            android:textColor="@color/whiteColor"
             android:textSize="15sp"
             android:gravity="right"
             android:layout_gravity="center"

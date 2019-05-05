@@ -14,7 +14,7 @@
     <color name="green">#3CB371</color>
 
     <!-- Event Profile Colors -->
-    <color name="profilePrimary">#49BEFF</color>
+    <color name="profilePrimary">#A44523</color>
     <color name="profilePrimaryDark">#65DCE5</color>
     <color name="profileAccent">#0D5D98</color>
     <color name="profileAddress">#2F7092</color>
@@ -27,6 +27,9 @@
     <color name="profileFollowersBg">#65DCE5</color>
     <color name="profileFollowingBg">#65DCE5</color>
     <color name="profileGrey">#E5E5E5</color>
+    <color name="whiteColor">#ffffff</color>
+
+    <color name="eventColor">#FFEEB994</color>
 
 
 </resources>
