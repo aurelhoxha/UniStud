@@ -44,10 +44,8 @@ public class StudentAddTutorial extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
-    private ImageButton mTutorialSelectImage;
     private EditText mTutorialTitle;
     private EditText mTutorialDesc;
-    private EditText mTutorialLocation;
     private String downloadUrl;
     private TextView mTextOfDate;
     private ImageButton mAddTheDateButton;
@@ -76,23 +74,13 @@ public class StudentAddTutorial extends AppCompatActivity {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         //Connect the Attributes to XML
-        mTutorialSelectImage = (ImageButton)findViewById(R.id.tutorial_image_select);
+
         mTutorialTitle = (EditText)findViewById(R.id.tutorial_title_field);
         mTutorialDesc = (EditText)findViewById(R.id.tutorial_desc_field);
-        mTutorialLocation = (EditText)findViewById(R.id.tutorial_location_field);
         mTextOfDate = (TextView)findViewById(R.id.tutorial_pick_date);
         mAddTheDateButton = (ImageButton)findViewById(R.id.tutorialDateButton);
         mSubmitButton = (Button)findViewById(R.id.submitTBtn);
         mProgress    = new ProgressDialog(this);
-
-        mTutorialSelectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent,GALLERY_REQUEST);
-            }
-        });
 
         mAddTheDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +119,7 @@ public class StudentAddTutorial extends AppCompatActivity {
     }
 
     private void startPostingTutorial(){
-        mProgress.setMessage("Posting the Tutorial ... ");
+        mProgress.setMessage("Please wait... ");
         mProgress.show();
         final String title_val  = mTutorialTitle.getText().toString().trim();
         final String desc_val   = mTutorialDesc.getText().toString().trim();
@@ -140,7 +128,8 @@ public class StudentAddTutorial extends AppCompatActivity {
         if(!TextUtils.isEmpty(title_val) && !TextUtils.isEmpty(desc_val)  && !TextUtils.isEmpty(date_val) ) {
             String userId = mFirebaseUser.getUid();
             String key = "";
-            Tutorial mTutorial = new Tutorial(key, title_val,desc_val,date_val, "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4",userId);
+            //String generatedURL = "http://" + getResources().getString(R.string.server_ip) + "/live/myStream/playlist.m3u8";
+            Tutorial mTutorial = new Tutorial(key, title_val,desc_val,date_val, "",userId, "added");
             mDatabase.push().setValue(mTutorial, new DatabaseReference.CompletionListener() {
                 @Override
                 public void onComplete(@Nullable DatabaseError databaseError, @NonNull DatabaseReference databaseReference) {
@@ -158,10 +147,5 @@ public class StudentAddTutorial extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK){
-            mImageUri = data.getData();
-            mTutorialSelectImage.setImageURI(mImageUri);
-        }
     }
 }

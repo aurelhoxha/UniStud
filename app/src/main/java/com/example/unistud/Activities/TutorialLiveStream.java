@@ -1,7 +1,9 @@
 package com.example.unistud.Activities;
 
 import android.Manifest;
+import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.unistud.R;
+import com.google.android.gms.common.api.Response;
 import com.wowza.gocoder.sdk.api.WowzaGoCoder;
 import com.wowza.gocoder.sdk.api.broadcast.WOWZBroadcast;
 import com.wowza.gocoder.sdk.api.broadcast.WOWZBroadcastConfig;
@@ -25,6 +28,11 @@ import com.wowza.gocoder.sdk.api.errors.WOWZStreamingError;
 import com.wowza.gocoder.sdk.api.status.WOWZState;
 import com.wowza.gocoder.sdk.api.status.WOWZStatus;
 import com.wowza.gocoder.sdk.api.status.WOWZStatusCallback;
+
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusCallback, View.OnClickListener {
 
@@ -81,7 +89,7 @@ public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusC
         goCoderBroadcastConfig = new WOWZBroadcastConfig(WOWZMediaConfig.FRAME_SIZE_1920x1080);
 
         // Set the connection properties for the target Wowza Streaming Engine server or Wowza Streaming Cloud live stream
-        goCoderBroadcastConfig.setHostAddress("139.179.206.222");
+        goCoderBroadcastConfig.setHostAddress(getResources().getString(R.string.server_ip));
         goCoderBroadcastConfig.setPortNumber(1935);
         goCoderBroadcastConfig.setApplicationName("live");
         goCoderBroadcastConfig.setStreamName("myStream");
@@ -188,7 +196,7 @@ public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusC
 
         switch (goCoderStatus.getState()) {
             case WOWZState.STARTING:
-                statusMessage.append("Broadcast initialization");
+                statusMessage.append("Live stream initialization");
                 break;
 
             case WOWZState.READY:
@@ -197,14 +205,19 @@ public class TutorialLiveStream extends AppCompatActivity implements WOWZStatusC
 
             case WOWZState.RUNNING:
                 statusMessage.append("Streaming is active");
+
+                //Change status to "live" now that we are recording the livestream
+                Intent intent = getIntent();
+
+
                 break;
 
             case WOWZState.STOPPING:
-                statusMessage.append("Broadcast shutting down");
+                statusMessage.append("Live stream shutting down");
                 break;
 
             case WOWZState.IDLE:
-                statusMessage.append("The broadcast is stopped");
+                statusMessage.append("The Live stream is stopped");
                 break;
 
             default:

@@ -7,17 +7,19 @@ public class Tutorial {
     private String tutorialDate;
     private String tutorialURL;
     private String tutorialCreatorId;
+    private String tutorialStatus;
 
     public Tutorial() {
     }
 
-    public Tutorial(String tutorialId, String tutorialTitle, String tutorialTopic,  String tutorialDate, String tutorialURL, String tutorialCreatorId) {
+    public Tutorial(String tutorialId, String tutorialTitle, String tutorialTopic,  String tutorialDate, String tutorialURL, String tutorialCreatorId, String status) {
         this.tutorialId = tutorialId;
         this.tutorialTitle = tutorialTitle;
         this.tutorialTopic = tutorialTopic;
         this.tutorialDate = tutorialDate;
         this.tutorialURL = tutorialURL;
         this.tutorialCreatorId = tutorialCreatorId;
+        this.tutorialStatus = status;
     }
 
     public String getTutorialId() {
@@ -36,11 +38,11 @@ public class Tutorial {
         this.tutorialTitle = tutorialTitle;
     }
 
-    public String getTutorialTopic() {
+    public String getTutorialDesc() {
         return tutorialTopic;
     }
 
-    public void setTutorialTopic(String tutorialTopic) {
+    public void setTutorialDesc(String tutorialTopic) {
         this.tutorialTopic= tutorialTopic;
     }
 
@@ -64,7 +66,11 @@ public class Tutorial {
         return tutorialCreatorId;
     }
 
-    public void setTutorialCreatorId(String tutorialCreatorId) {
-        this.tutorialCreatorId = tutorialCreatorId;
-    }
+    public void setTutorialCreatorId(String tutorialCreatorId) { this.tutorialCreatorId = tutorialCreatorId; }
+
+    public void setTutorialStatus(String status){this.tutorialStatus = status;}
+
+    public String getTutorialStatus(){ return tutorialStatus; }
+
+
 }
