@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Activities.OrganizationInternshipProfile">
 
     <RelativeLayout
@@ -144,29 +144,52 @@
         </ScrollView>
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="185dp"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/organization_internship_profile_done"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/profileHeadings"
-                android:text="Edit"
-                android:textColor="#ffffff"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/button_message_background"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="SAVE"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <Button
                 android:id="@+id/organization_internship_profile_delete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/purple"
-                android:text="Delete"
-                android:textColor="#ffffff"/>
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_message_background"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="DELETE"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

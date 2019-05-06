@@ -68,18 +68,22 @@
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="0dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/login_button_bg"
-        android:text="Log In"
-        android:textAllCaps="false"
-        android:textColor="@color/login_form_details_medium"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_message_background"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="LOG IN"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
         app:layout_constraintStart_toStartOf="@id/guideline_left_login"
-        app:layout_constraintTop_toBottomOf="@id/login_password" />
+        app:layout_constraintTop_toBottomOf="@id/login_password"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/forget_password"
@@ -119,10 +123,10 @@
         android:id="@+id/login_button_facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
-        app:layout_constraintStart_toStartOf="@id/guideline_left_login"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@id/login_button_google"
-        android:layout_marginBottom="20dp"/>
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right_login"
+        app:layout_constraintStart_toStartOf="@id/guideline_left_login" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/login_button_google"
