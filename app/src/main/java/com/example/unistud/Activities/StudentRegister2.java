@@ -69,6 +69,63 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
         //Initializing the variables
 
         student_country = (Spinner) findViewById(R.id.student_country_education);
+        student_university = (Spinner) findViewById(R.id.student_university);
+
+        submit = (Button) findViewById(R.id.submit);
+        title = (TextView) findViewById(R.id.register_title2);
+        photo = (ImageView) findViewById(R.id.user_profile_image2);
+
+        //Databse
+
+        mAuth = FirebaseAuth.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Students");
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Universities");
+        userId = mAuth.getCurrentUser().getUid();
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Student mStudent = dataSnapshot.child(userId).getValue(Student.class);
+                String studentFullName = mStudent.getFullname();
+                String studentProfilePicture = mStudent.getProfile_photo();
+                Picasso.get().load(studentProfilePicture).into(photo);
+                title.setText("Almost done  " + studentFullName);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        mDialog = new ProgressDialog(this);
+        mStorageReference = FirebaseStorage.getInstance().getReference("DefaultFiles");
+
+        //For teh country drop down
+        Locale[] locales = Locale.getAvailableLocales();
+        ArrayList<String> countries = new ArrayList<String>();
+        for (Locale locale : locales) {
+            String country = locale.getDisplayCountry();
+            if (country.trim().length() > 0 && !countries.contains(country)) {
+                countries.add(country);
+            }
+        }
+        Collections.sort(countries);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, countries);
+        // set the view for the Drop down list
+        dataAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // set the ArrayAdapter to the spinner
+        student_country.setAdapter(dataAdapter);
+        student_country.setSelection(1);
+
+        final ArrayAdapter<String> uniAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, universities);
+        // set the view for the Drop down list
+        uniAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // set the ArrayAdapter to the spinner
+        student_university.setAdapter(uniAdapter);
+
         student_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -98,12 +155,13 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
 
             }
         });
-        student_university = (Spinner) findViewById(R.id.student_university);
+
         student_university.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 student_university.setSelection(position);
                 university = parent.getItemAtPosition(position).toString();
+                Log.d("Checking Name Of Uni: ", university);
             }
 
             @Override
@@ -111,66 +169,10 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
 
             }
         });
-        submit = (Button) findViewById(R.id.submit);
-        title = (TextView) findViewById(R.id.register_title2);
-        photo = (ImageView) findViewById(R.id.user_profile_image);
-
-        //Databse
-
-        mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Students");
-        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Universities");
-        userId = mAuth.getCurrentUser().getUid();
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Student mStudent = dataSnapshot.child(userId).getValue(Student.class);
-                String studentFullName = mStudent.getFullname();
-                title.setText("Almost done  " + studentFullName);
-
-                image = (String) dataSnapshot.child("profile_photo").getValue();
-                Picasso.get().load(image).into(photo);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mDialog = new ProgressDialog(this);
-        mStorageReference = FirebaseStorage.getInstance().getReference("DefaultFiles");
 
         //Set the Listeners
         submit.setOnClickListener(this);
 
-
-        //For teh country drop down
-        Locale[] locales = Locale.getAvailableLocales();
-        ArrayList<String> countries = new ArrayList<String>();
-        for (Locale locale : locales) {
-            String country = locale.getDisplayCountry();
-            if (country.trim().length() > 0 && !countries.contains(country)) {
-                countries.add(country);
-            }
-        }
-        Collections.sort(countries);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, countries);
-        // set the view for the Drop down list
-        dataAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // set the ArrayAdapter to the spinner
-        student_country.setAdapter(dataAdapter);
-        student_country.setSelection(1);
-
-        ArrayAdapter<String> uniAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, universities);
-        // set the view for the Drop down list
-        uniAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // set the ArrayAdapter to the spinner
-        student_university.setAdapter(uniAdapter);
-      //  student_university.setSelection(1);
 
     }
 
@@ -184,11 +186,6 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
 
 
     private void Submit() {
-
-
-      //  final String country, university;
-
-        university = student_university.getSelectedItem().toString();
 
         final DatabaseReference currentUserTable = mDatabase.child(userId);
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
