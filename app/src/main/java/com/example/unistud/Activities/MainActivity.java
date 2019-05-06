@@ -301,7 +301,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 else {
                     Student mStudent = dataSnapshot.child("Students").child(userId).getValue(Student.class);
-                    String mAccountCompleted = mStudent.getProfile_completed();
+                    //String mAccountCompleted = mStudent.getProfile_completed();
+                    String mAccountCompleted = "true";
 
                     //Redirect to Student Registration
                     if(mAccountCompleted.equals("false")){

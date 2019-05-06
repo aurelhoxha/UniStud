@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import com.example.unistud.Activities.PlayVideo;
 import com.example.unistud.Activities.TutorialLiveStream;
 import com.example.unistud.Helpers.Tutorial;
@@ -20,38 +19,14 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.example.unistud.Activities.OrganizationEventProfile;
-import com.example.unistud.Activities.StudentEventProfile;
-import com.example.unistud.Helpers.Event;
-import com.example.unistud.Helpers.EventViewHolder;
-import com.example.unistud.R;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class StudentTutorialFragment extends Fragment {
-
-    private Button startLivestreamButton;
 
     private RecyclerView mTutorialList;
     private DatabaseReference databaseReference;
@@ -79,15 +54,6 @@ public class StudentTutorialFragment extends Fragment {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         userId = mFirebaseUser.getUid();
 
-        startLivestreamButton = myFragmentView.findViewById(R.id.student_start_tutorial);
-        startLivestreamButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent1 = new Intent(getApplicationContext(), TutorialLiveStream.class);
-                startActivityForResult(intent1,1);
-            }
-        });
-
         //RecyclerView
         mTutorialList = myFragmentView.findViewById(R.id.student_tutorial_list);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Tutorials");
@@ -104,7 +70,6 @@ public class StudentTutorialFragment extends Fragment {
                 //holder.setTutorialURL(model.getTutorialURL());
                 holder.setmTutorialId(model.getTutorialId());
                 holder.setTutorialDesc(model.getTutorialDesc());
-                //final String tutorialLink = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
                 final String tutorialID = model.getTutorialId();
                 final String tutorialStatus = model.getTutorialStatus();
                 final String tutorialCreator = model.getTutorialCreatorId();
@@ -130,7 +95,6 @@ public class StudentTutorialFragment extends Fragment {
                             intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
                             startActivityForResult(intent,1);
                         }
-
                         else if(model.getTutorialStatus().equals("saved")){
                             if(!tutorialURL.equals("")) {
                                 Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
