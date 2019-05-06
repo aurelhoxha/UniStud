@@ -1,5 +1,6 @@
 package com.example.unistud.Activities;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -8,7 +9,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,8 +23,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.unistud.Helpers.Event;
 import com.example.unistud.Helpers.Student;
 import com.example.unistud.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,6 +59,8 @@ public class StudentRegister1 extends AppCompatActivity implements View.OnClickL
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private String userId;
 
+    private String downloadUrl;
+
     //Firebase Connection Instances
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -59,7 +70,7 @@ public class StudentRegister1 extends AppCompatActivity implements View.OnClickL
     private static final int GALLERY_REQUEST = 1;
     private Uri mImageUri = null;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-
+    Student mStudent;
 
 
     @Override
@@ -78,13 +89,15 @@ public class StudentRegister1 extends AppCompatActivity implements View.OnClickL
 
 
         mAuth = FirebaseAuth.getInstance();
+        mStorageReference = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Students");
         userId = mAuth.getCurrentUser().getUid();
+
         mDatabase.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Student mStudent = dataSnapshot.child(userId).getValue(Student.class);
+                mStudent = dataSnapshot.child(userId).getValue(Student.class);
                 String studentFullName = mStudent.getFullname();
                 String studentProfilePicture = mStudent.getProfile_photo();
                 Picasso.get().load(studentProfilePicture).into(profile_pic);
@@ -98,7 +111,6 @@ public class StudentRegister1 extends AppCompatActivity implements View.OnClickL
         });
 
         mDialog = new ProgressDialog(this);
-        mStorageReference = FirebaseStorage.getInstance().getReference("DefaultFiles");
 
         //Set the Listeners
         next_Student.setOnClickListener(this);
@@ -152,10 +164,10 @@ public class StudentRegister1 extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void goNext(){
+    private void goNext() {
 
 
-        final String birthday, phoneNumber,g;
+        final String birthday, phoneNumber, g;
 
         birthday = student_birthday.getText().toString().trim();
         phoneNumber = student_phone.getText().toString().trim();
@@ -165,34 +177,63 @@ public class StudentRegister1 extends AppCompatActivity implements View.OnClickL
         gender = (RadioButton) findViewById(selectedId);
         g = gender.getText().toString().trim();
 
+        if (!TextUtils.isEmpty(birthday) && !TextUtils.isEmpty(phoneNumber) && !TextUtils.isEmpty(g) && mImageUri != null) {
+            final StorageReference filePath = mStorageReference.child("Student_Profile_Photo").child(mImageUri.getLastPathSegment());
+            final UploadTask mUploadTask = filePath.putFile(mImageUri);
 
-
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId);
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    dataSnapshot.getRef().child("birthday").setValue(birthday);
-                    dataSnapshot.getRef().child("gender").setValue(g);
-                    dataSnapshot.getRef().child("mobile_phone").setValue(phoneNumber);
-                    Intent intent = new Intent(StudentRegister1.this, StudentRegister2.class);
-                    startActivity(intent);
-                    finish();
-
-                    //uploading the photo
-
-                    final StorageReference filePath = mStorageReference.child("profile_photo").child(mImageUri.getLastPathSegment());
-                    final UploadTask mUploadTask = filePath.putFile(mImageUri);
-
+            mUploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    String message = e.toString();
+                    Toast.makeText(StudentRegister1.this, "Error: " + message, Toast.LENGTH_SHORT).show();
                 }
-            }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Task<Uri> urlTask = mUploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+                            downloadUrl = filePath.getDownloadUrl().toString();
+                            return filePath.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if (task.isSuccessful()) {
+                                final Uri downloadUri = task.getResult();
+                                mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId);
+                                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                                            dataSnapshot.getRef().child("birthday").setValue(birthday);
+                                            dataSnapshot.getRef().child("gender").setValue(g);
+                                            dataSnapshot.getRef().child("mobile_phone").setValue(phoneNumber);
+                                            dataSnapshot.getRef().child("profile_photo").setValue(downloadUri.toString());
+                                            Intent intent = new Intent(StudentRegister1.this, StudentRegister2.class);
+                                            startActivity(intent);
+                                            finish();
 
-            }
-        });
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.unistud.Helpers.Student;
+import com.example.unistud.Helpers.University;
 import com.example.unistud.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
-public class StudentRegister2 extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class StudentRegister2 extends AppCompatActivity implements View.OnClickListener{
 
     private Spinner student_country;
     private Spinner student_university;
@@ -68,8 +69,48 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
         //Initializing the variables
 
         student_country = (Spinner) findViewById(R.id.student_country_education);
-        student_country.setOnItemSelectedListener(this);
+        student_country.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                country = parent.getItemAtPosition(position).toString();
+                myQuery = mDatabaseRef.orderByChild("unversityCountry").equalTo(country);
+                myQuery.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        universities.clear();
+                        for(DataSnapshot taskSnapshot : dataSnapshot.getChildren()){
+                            University mUni = taskSnapshot.getValue(University.class);
+                            String uni = (String) mUni.getUniversityName();
+                            universities.add(uni);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         student_university = (Spinner) findViewById(R.id.student_university);
+        student_university.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                student_university.setSelection(position);
+                university = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         submit = (Button) findViewById(R.id.submit);
         title = (TextView) findViewById(R.id.register_title2);
         photo = (ImageView) findViewById(R.id.user_profile_image);
@@ -121,16 +162,15 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // set the ArrayAdapter to the spinner
         student_country.setAdapter(dataAdapter);
-        student_country.setSelection(37);
+        student_country.setSelection(1);
 
-        universities.add("Aurel");
-        universities.add("selda");
         ArrayAdapter<String> uniAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, universities);
         // set the view for the Drop down list
         uniAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // set the ArrayAdapter to the spinner
         student_university.setAdapter(uniAdapter);
+      //  student_university.setSelection(1);
 
     }
 
@@ -140,37 +180,6 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
         if (v == submit) {
             Submit();
         }
-    }
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-        country = parent.getItemAtPosition(position).toString();
-        myQuery = mDatabaseRef.orderByChild("universityName").equalTo(country);
-        myQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                universities.clear();
-                for(DataSnapshot taskSnapshot : dataSnapshot.getChildren()){
-                    University mUni = taskSnapshot.getValue(University.class);
-                    String uni = (String) mUni.getUniversityCountry();
-                    universities.add(uni);
-                }
-
-                for (int i = 0; i < universities.size(); i++){
-                    Log.d("Checking: ", ""+universities.get(i));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-    public void onNothingSelected(AdapterView<?> arg0){
-
     }
 
 
