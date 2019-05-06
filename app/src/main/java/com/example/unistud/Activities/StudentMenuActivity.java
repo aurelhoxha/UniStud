@@ -321,6 +321,10 @@ public class StudentMenuActivity  extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.action_bar_tutorials, menu);
         }
 
+        if (navItemIndex == 1) {
+            getMenuInflater().inflate(R.menu.action_bar_university, menu);
+        }
+
         return true;
     }
 
@@ -337,11 +341,20 @@ public class StudentMenuActivity  extends AppCompatActivity {
 
         }
 
+        if (id == R.id.action_add_university) {
+            addUniversityMethod();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
     private void addTutorialMethod() {
         Intent myIntent = new Intent(getApplicationContext(), StudentAddTutorial.class);
+        startActivityForResult(myIntent,1);
+    }
+
+    private void addUniversityMethod() {
+        Intent myIntent = new Intent(getApplicationContext(), AddUniversity.class);
         startActivityForResult(myIntent,1);
     }
 
