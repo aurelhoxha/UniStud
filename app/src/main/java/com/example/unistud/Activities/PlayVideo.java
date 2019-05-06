@@ -30,7 +30,6 @@ import static com.example.unistud.Fragments.StudentTutorialFragment.TUTORIAL_LIN
 import static com.example.unistud.Fragments.StudentTutorialFragment.TUTORIAL_STATUS;
 
 public class PlayVideo extends AppCompatActivity {
-
     private static final String APP_NAME = MainActivity.class.getSimpleName();
     private static final java.lang.String POS_KEY = "pos";
     private SimpleExoPlayer player;
