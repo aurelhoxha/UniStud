@@ -36,4 +36,11 @@
     <color name="internshipColor">#FFABDF89</color>
 
 
+    <color name="colorPrimaryTrade">#F50057</color>
+    <color name="colorPrimaryDarkTrade">#F50057</color>
+    <color name="colorAccentTrade">#FF4081</color>
+    <color name="viewBg">#f1f5f8</color>
+    <color name="item_title">#4c4c4c</color>
+
+
 </resources>

@@ -115,8 +115,6 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
         student_country.setAdapter(dataAdapter);
         student_country.setSelection(37);
 
-        System.out.println("# countries found: " + countries.size());
-
     }
 
 

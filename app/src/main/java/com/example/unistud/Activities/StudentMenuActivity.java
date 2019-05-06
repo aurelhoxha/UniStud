@@ -321,6 +321,15 @@ public class StudentMenuActivity  extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.action_bar_tutorials, menu);
         }
 
+        if (navItemIndex == 1) {
+            getMenuInflater().inflate(R.menu.action_bar_university, menu);
+        }
+
+
+        if (navItemIndex == 4) {
+            getMenuInflater().inflate(R.menu.action_bar_trade_item, menu);
+        }
+
         return true;
     }
 
@@ -337,6 +346,14 @@ public class StudentMenuActivity  extends AppCompatActivity {
 
         }
 
+        if (id == R.id.action_add_university) {
+            addUniversityMethod();
+        }
+
+        if (id == R.id.action_add_trade_item) {
+            addTradeItem();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -345,5 +362,14 @@ public class StudentMenuActivity  extends AppCompatActivity {
         startActivityForResult(myIntent,1);
     }
 
+    private void addUniversityMethod() {
+        Intent myIntent = new Intent(getApplicationContext(), AddUniversity.class);
+        startActivityForResult(myIntent,1);
+    }
+
+    private void addTradeItem() {
+        Intent myIntent = new Intent(getApplicationContext(), StudentAddItem.class);
+        startActivityForResult(myIntent,1);
+    }
 
 }
