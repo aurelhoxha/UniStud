@@ -48,6 +48,8 @@
         <activity android:name=".Activities.StudentRegister2"></activity>
         <activity android:name=".Activities.StudentEventProfile"></activity>
         <activity android:name=".Activities.StudentInternshipProfile"></activity>
+        <activity android:name=".Activities.StudentAddItem"></activity>
+        <activity android:name=".Activities.StudentTradeWindow"></activity>
         <activity android:name=".Activities.PlayVideo"
             android:configChanges="orientation|screenSize|layoutDirection"></activity>
 
