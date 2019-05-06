@@ -19,11 +19,21 @@
 
     <!-- The broadcast button -->
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Broadcast"
         android:id="@+id/broadcast_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_message_background"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:text="Broadcast"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        />
 
 </RelativeLayout>
