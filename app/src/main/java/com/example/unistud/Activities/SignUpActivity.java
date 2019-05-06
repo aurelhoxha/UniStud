@@ -142,7 +142,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                         currentUserTable.child("birthday").setValue("");
                         currentUserTable.child("gender").setValue("");
                         currentUserTable.child("university_country").setValue("");
-                        currentUserTable.child("university_city").setValue("");
                         currentUserTable.child("university_name").setValue("");
                         currentUserTable.child("mobile_phone").setValue("");
                     }

@@ -11,7 +11,6 @@ public class Student {
     private String mobile_phone;
     private String profile_completed;
     private String profile_photo;
-    private String university_city;
     private String university_country;
     private String university_name;
 
@@ -19,7 +18,7 @@ public class Student {
 
     }
 
-    public Student(String account_type, String birthday, String email, String fullname, String gender, String mobile_phone, String profile_completed, String profile_photo, String university_city, String university_country, String university_name) {
+    public Student(String account_type, String birthday, String email, String fullname, String gender, String mobile_phone, String profile_completed, String profile_photo,String university_country, String university_name) {
         this.account_type = account_type;
         this.birthday = birthday;
         this.email = email;
@@ -28,7 +27,6 @@ public class Student {
         this.mobile_phone = mobile_phone;
         this.profile_completed = profile_completed;
         this.profile_photo = profile_photo;
-        this.university_city = university_city;
         this.university_country = university_country;
         this.university_name = university_name;
     }
@@ -95,14 +93,6 @@ public class Student {
 
     public void setProfile_photo(String profile_photo) {
         this.profile_photo = profile_photo;
-    }
-
-    public String getUniversity_city() {
-        return university_city;
-    }
-
-    public void setUniversity_city(String university_city) {
-        this.university_city = university_city;
     }
 
     public String getUniversity_country() {
