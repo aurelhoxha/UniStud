@@ -9,7 +9,23 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c67629fa-56d3-4790-be59-a35eb7e8aac3" name="Default Changelist" comment="gradle update" />
+    <list default="true" id="c67629fa-56d3-4790-be59-a35eb7e8aac3" name="Default Changelist" comment="gradle update">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/action_bar_trade_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentMenuActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentMenuActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,45 +89,45 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gradle" value="18" />
-          <entry key="java" value="308" />
+          <entry key="java" value="310" />
           <entry key="png" value="12" />
-          <entry key="xml" value="345" />
+          <entry key="xml" value="351" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Groovy" value="18" />
           <entry key="Image" value="12" />
-          <entry key="JAVA" value="308" />
-          <entry key="XML" value="345" />
+          <entry key="JAVA" value="310" />
+          <entry key="XML" value="351" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="14" />
-          <entry key="project.open.time.1" value="3" />
+          <entry key="project.closed" value="15" />
+          <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.7" value="3" />
           <entry key="project.open.time.8" value="2" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gradle" value="338" />
-          <entry key="java" value="17421" />
+          <entry key="java" value="17452" />
           <entry key="txt" value="47" />
-          <entry key="xml" value="5433" />
+          <entry key="xml" value="5456" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="338" />
-          <entry key="JAVA" value="17421" />
+          <entry key="JAVA" value="17452" />
           <entry key="PLAIN_TEXT" value="47" />
-          <entry key="XML" value="5433" />
+          <entry key="XML" value="5456" />
         </counts>
       </usages-collector>
     </session>
@@ -156,22 +172,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/AddUniversity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="93" column="85" selection-start-line="93" selection-start-column="85" selection-end-line="93" selection-end-column="85" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3175#3414#0" expanded="true" />
-                <element signature="e#3413#3414#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -210,7 +211,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_organization_internship_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Helpers/InternshipViewHolder.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Fragments/OrganizationInternshipFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Fragments/OrganizationEventFragment.java" />
@@ -255,20 +255,19 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentInternshipProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_add_new_university.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentRegister2.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/action_bar_university.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentMenuActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/AddUniversity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Helpers/University.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/menu/action_bar_trade_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentMenuActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-1" />
-    <option name="y" value="25" />
     <option name="width" value="1280" />
-    <option name="height" value="717" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -278,6 +277,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="UniStud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UniStud" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -311,20 +322,7 @@
             <path>
               <item name="UniStud" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="unistud" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Helpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="UniStud" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="UniStud" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="UniStud" type="1abcf292:AndroidViewProjectNode" />
@@ -357,18 +355,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="UniStud" type="b2602c69:ProjectViewProjectNode" />
-              <item name="UniStud" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -525,26 +511,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49928674" visible="true" weight="0.24878837" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49928674" visible="true" weight="0.24878837" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" sideWeight="0.5007133" side_tool="true" weight="0.32956383" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" x="330" y="151" width="1280" height="695" id="Run" order="0" sideWeight="0.49596122" type="WINDOWED" weight="0.32876712" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.6978998" weight="0.36438355" />
+      <window_info anchor="bottom" x="0" y="0" width="80" height="164" id="Run" order="0" sideWeight="0.49596122" type="WINDOWED" weight="0.32876712" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.69709206" visible="true" weight="0.36438355" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49676898" weight="0.32876712" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.4911147" weight="0.32876712" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5024233" side_tool="true" visible="true" weight="0.20547946" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="5" sideWeight="0.3029079" side_tool="true" visible="true" weight="0.36438355" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49596122" weight="0.3260274" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.72940224" weight="0.24246575" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.7285945" weight="0.24246575" />
       <window_info anchor="bottom" id="Android Profiler" order="8" />
-      <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49757674" visible="true" weight="0.20547946" />
+      <window_info anchor="bottom" id="Find" order="9" sideWeight="0.49757674" weight="0.20547946" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49893278" weight="0.32935324" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -604,24 +589,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Sign In Activity Changed" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_student_tutorials.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="50" selection-start-line="4" selection-start-column="50" selection-end-line="4" selection-end-column="50" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Fragments/StudentTutorialFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="28" column="87" selection-start-line="28" selection-start-column="68" selection-end-line="28" selection-end-column="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
@@ -638,10 +605,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="157" column="4" selection-start-line="157" selection-start-column="4" selection-end-line="165" selection-end-column="5" />
-          <folding>
-            <element signature="e#3305#3620#0" expanded="true" />
-            <element signature="e#3619#3620#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -655,9 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="177" column="20" selection-start-line="177" selection-start-column="20" selection-end-line="179" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -791,11 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
           <caret line="55" column="77" selection-start-line="55" selection-start-column="77" selection-end-line="55" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4723#4936#0" expanded="true" />
-            <element signature="e#4935#4936#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -817,9 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -879,10 +831,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="128" column="4" selection-start-line="128" selection-start-column="4" selection-end-line="156" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3349#3357#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -897,17 +845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1122">
           <caret line="73" column="4" selection-start-line="73" selection-start-column="4" selection-end-line="73" selection-end-column="57" />
-          <folding>
-            <element signature="method#userFacebookSignIn#0;class#MainActivity#0" />
-            <element signature="method#onCancel#0;class#7384:7966" />
-            <element signature="method#onError#0;class#7384:7966" />
-            <element signature="method#userGoogleSignIn#0;class#MainActivity#0" />
-            <element signature="method#onActivityResult#0;class#MainActivity#0" />
-            <element signature="method#onStart#0;class#MainActivity#0" />
-            <element signature="method#firebaseAuthWithGoogle#0;class#MainActivity#0" />
-            <element signature="method#handleFacebookToken#0;class#MainActivity#0" />
-            <element signature="method#redirectUser#0;class#MainActivity#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -915,13 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="170" column="87" selection-start-line="170" selection-start-column="70" selection-end-line="170" selection-end-column="87" />
-          <folding>
-            <element signature="e#3621#4368#0" expanded="true" />
-            <element signature="e#4367#4368#0" expanded="true" />
-            <element signature="e#5748#6054#0" expanded="true" />
-            <element signature="e#6053#6054#0" expanded="true" />
-            <element signature="e#7936#7937#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -940,13 +870,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -957,24 +880,6 @@
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-154">
-          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentMenuActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="356" column="75" selection-start-line="356" selection-start-column="75" selection-end-line="356" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Helpers/University.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -997,12 +902,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/AddUniversity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="93" column="85" selection-start-line="93" selection-start-column="85" selection-end-line="93" selection-end-column="85" />
+        <state relative-caret-position="353">
+          <caret line="92" column="62" selection-start-line="92" selection-start-column="62" selection-end-line="92" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3175#3414#0" expanded="true" />
             <element signature="e#3413#3414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/action_bar_internships.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="10" selection-end-column="7" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/action_bar_trade_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="46" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="46" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="52" column="57" selection-start-line="52" selection-start-column="57" selection-end-line="52" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentMenuActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="370" column="76" selection-start-line="370" selection-start-column="76" selection-end-line="370" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
