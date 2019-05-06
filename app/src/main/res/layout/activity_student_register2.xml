@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/profile_circle_border">
             <ImageView
-                android:id="@+id/user_profile_image"
+                android:id="@+id/user_profile_image2"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:adjustViewBounds="true"
@@ -99,7 +99,7 @@
                         android:textColor="@color/profileHeadings"
                         android:textSize="13sp" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/student_university"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -107,6 +107,7 @@
                         android:inputType="text"
                         android:textColor="#000000"
                         android:textSize="18sp" />
+
 
                 </LinearLayout>
 
