@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -29,21 +31,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
-public class StudentRegister2 extends AppCompatActivity implements View.OnClickListener {
+public class StudentRegister2 extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private Spinner student_country;
-    private EditText student_university;
+    private Spinner student_university;
     private Button submit;
     private String userId;
     private TextView title;
     private ImageView photo;
 
+
+
     private String image;
+    private String country;
+    private String university;
+
+    private Query myQuery;
 
     //Firebase Connection Instances
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseRef;
     private StorageReference mStorageReference;
+    private ArrayList<String> universities = new ArrayList<String>();
 
     //Other Variables
     private ProgressDialog mDialog;
@@ -58,7 +68,8 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
         //Initializing the variables
 
         student_country = (Spinner) findViewById(R.id.student_country_education);
-        student_university = (EditText) findViewById(R.id.student_university);
+        student_country.setOnItemSelectedListener(this);
+        student_university = (Spinner) findViewById(R.id.student_university);
         submit = (Button) findViewById(R.id.submit);
         title = (TextView) findViewById(R.id.register_title2);
         photo = (ImageView) findViewById(R.id.user_profile_image);
@@ -67,6 +78,7 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child("Students");
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Universities");
         userId = mAuth.getCurrentUser().getUid();
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -102,10 +114,6 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
             }
         }
         Collections.sort(countries);
-        for (String country : countries) {
-            System.out.println(country);
-        }
-
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, countries);
         // set the view for the Drop down list
@@ -115,7 +123,14 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
         student_country.setAdapter(dataAdapter);
         student_country.setSelection(37);
 
-        System.out.println("# countries found: " + countries.size());
+        universities.add("Aurel");
+        universities.add("selda");
+        ArrayAdapter<String> uniAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, universities);
+        // set the view for the Drop down list
+        uniAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // set the ArrayAdapter to the spinner
+        student_university.setAdapter(uniAdapter);
 
     }
 
@@ -126,15 +141,45 @@ public class StudentRegister2 extends AppCompatActivity implements View.OnClickL
             Submit();
         }
     }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        country = parent.getItemAtPosition(position).toString();
+        myQuery = mDatabaseRef.orderByChild("universityName").equalTo(country);
+        myQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                universities.clear();
+                for(DataSnapshot taskSnapshot : dataSnapshot.getChildren()){
+                    University mUni = taskSnapshot.getValue(University.class);
+                    String uni = (String) mUni.getUniversityCountry();
+                    universities.add(uni);
+                }
+
+                for (int i = 0; i < universities.size(); i++){
+                    Log.d("Checking: ", ""+universities.get(i));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void onNothingSelected(AdapterView<?> arg0){
+
+    }
 
 
     private void Submit() {
 
 
-        final String country, university;
+      //  final String country, university;
 
-        country = student_country.getSelectedItem().toString();
-        university = student_university.getText().toString().trim();
+        university = student_university.getSelectedItem().toString();
 
         final DatabaseReference currentUserTable = mDatabase.child(userId);
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {

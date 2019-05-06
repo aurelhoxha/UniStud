@@ -99,7 +99,7 @@
                         android:textColor="@color/profileHeadings"
                         android:textSize="13sp" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/student_university"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

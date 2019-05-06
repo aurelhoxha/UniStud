@@ -49,6 +49,7 @@ public class StudentTradeWindow  extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,8 +89,6 @@ public class StudentTradeWindow  extends AppCompatActivity {
         }
 
     }
-
-
 
     /**
      * Adding few albums for testing
