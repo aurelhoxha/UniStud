@@ -132,17 +132,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     currentUserTable.child("email").setValue(userEmail);
                     currentUserTable.child("profile_completed").setValue("false");
                     if(accountType.equals("Organization")){
-                        currentUserTable.child("profile_photo").setValue("com.google.android.gms.tasks.zzu@bb74bb2");
+                        currentUserTable.child("profile_photo").setValue("https://firebasestorage.googleapis.com/v0/b/unistud-1594c.appspot.com/o/DefaultFiles%2Fimage%3A27?alt=media&token=432f5f55-d50e-4cfa-adc1-c27f84e60606");
                         currentUserTable.child("description").setValue("");
                         currentUserTable.child("domain").setValue("");
                         currentUserTable.child("location").setValue("");
                     }
                     else {
-                        currentUserTable.child("profile_photo").setValue("com.google.android.gms.tasks.zzu@bb74bb2");
+                        currentUserTable.child("profile_photo").setValue("https://firebasestorage.googleapis.com/v0/b/unistud-1594c.appspot.com/o/DefaultFiles%2Fimage%3A27?alt=media&token=432f5f55-d50e-4cfa-adc1-c27f84e60606");
                         currentUserTable.child("birthday").setValue("");
                         currentUserTable.child("gender").setValue("");
                         currentUserTable.child("university_country").setValue("");
-                        currentUserTable.child("university_city").setValue("");
                         currentUserTable.child("university_name").setValue("");
                         currentUserTable.child("mobile_phone").setValue("");
                     }

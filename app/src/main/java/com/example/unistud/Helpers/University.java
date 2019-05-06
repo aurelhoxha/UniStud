@@ -3,7 +3,7 @@ package com.example.unistud.Helpers;
 public class University {
     private String universityId;
     private String universityName;
-    private String unversityCountry;
+    private String universityCountry;
 
     public University(){
 
@@ -12,7 +12,7 @@ public class University {
     public University(String universityID, String universityName, String universityCountry){
         this.universityId = universityId;
         this.universityName = universityName;
-        this.unversityCountry = universityCountry;
+        this.universityCountry = universityCountry;
     }
 
     public String getUniversityID() {
@@ -32,10 +32,10 @@ public class University {
     }
 
     public String getUnversityCountry() {
-        return unversityCountry;
+        return universityCountry;
     }
 
     public void setUnversityCountry(String unversityCountry) {
-        this.unversityCountry = unversityCountry;
+        this.universityCountry = unversityCountry;
     }
 }
