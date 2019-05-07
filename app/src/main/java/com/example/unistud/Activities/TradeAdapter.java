@@ -36,12 +36,16 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
     private List<Trade_Item> itemList;
     private String itemId;
     private String title;
+    private String category;
     private String userId;
 
     //Database References
     private DatabaseReference databaseReference;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+
+    public static final String ITEMID = "";
+    public static final String CATEGORY = "";
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -97,6 +101,7 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
          itemId = item.getItemId(); //geting the item ID
 
          title = item.getTitle();
+         category= item.getCategory();
 
 
         // loading item cover using Glide library
@@ -144,6 +149,10 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
                     return true;
                 case R.id.action_view_details:
                     Toast.makeText(mContext, "View Details", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, StudentItemProfile.class);
+                    intent.putExtra(ITEMID,itemId + " " + category);
+                    mContext.startActivity(intent);
+
                     return true;
                 default:
             }

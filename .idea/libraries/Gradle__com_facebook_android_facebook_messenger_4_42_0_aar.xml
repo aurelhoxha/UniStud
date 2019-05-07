@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.android:facebook-messenger:4.42.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.42.0.aar/a3ca0c2016f1c3e0e20eee28d683c355/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.42.0.aar/a3ca0c2016f1c3e0e20eee28d683c355/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.42.0.aar/8f9f34d509280a1a26325b78b249890e/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.42.0.aar/8f9f34d509280a1a26325b78b249890e/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
