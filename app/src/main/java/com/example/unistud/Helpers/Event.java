@@ -11,7 +11,6 @@ public class Event {
     private String eventCreatorId;
 
     public Event() {
-
     }
 
     public Event(String eventId, String eventTitle, String eventDesc, String eventDate, String eventPlace, String eventImage, String eventCreatorId) {

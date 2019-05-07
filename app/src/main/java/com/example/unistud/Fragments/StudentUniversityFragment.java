@@ -14,7 +14,7 @@ public class StudentUniversityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myFragmentView = inflater.inflate(R.layout.fragment_student_universities, container, false);
+        View myFragmentView = inflater.inflate(R.layout.activity_student_universities, container, false);
         return myFragmentView;
     }
 }

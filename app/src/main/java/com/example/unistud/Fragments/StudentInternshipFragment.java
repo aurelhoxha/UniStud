@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.unistud.Activities.OrganizationInternshipProfile;
-import com.example.unistud.Activities.StudentEventProfile;
 import com.example.unistud.Activities.StudentInternshipProfile;
 import com.example.unistud.Helpers.Internship;
 import com.example.unistud.Helpers.InternshipViewHolder;
@@ -36,7 +34,7 @@ public class StudentInternshipFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View myFragmentView = inflater.inflate(R.layout.fragment_student_internships, container, false);
+        View myFragmentView = inflater.inflate(R.layout.activity_student_internships, container, false);
 
         //RecyclerView
         mInternshipList = myFragmentView.findViewById(R.id.student_internship_list);

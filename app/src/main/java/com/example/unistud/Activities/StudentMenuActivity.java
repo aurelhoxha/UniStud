@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.example.unistud.Fragments.StudentEventFragment;
 import com.example.unistud.Fragments.StudentHomeFragment;
 import com.example.unistud.Fragments.StudentInternshipFragment;
+import com.example.unistud.Fragments.StudentOpportunitiesFragment;
 import com.example.unistud.Fragments.StudentProfileFragment;
 import com.example.unistud.Fragments.StudentTradeFragment;
 import com.example.unistud.Fragments.StudentTutorialFragment;
@@ -43,6 +44,7 @@ public class StudentMenuActivity  extends AppCompatActivity {
     private static final String TAG_HOME = "Home";
     private static final String TAG_UNIVERSITY = "University";
     private static final String TAG_INTERNSHIP = "Internship";
+    private static final String TAG_OPPORTUNITIES = "Opportunities";
     private static final String TAG_TUTORIAL = "Tutorial";
     private static final String TAG_TRADE = "Trade";
     private static final String TAG_EVENT = "Events";
@@ -166,18 +168,22 @@ public class StudentMenuActivity  extends AppCompatActivity {
                 StudentInternshipFragment internshipFragment = new StudentInternshipFragment();
                 return internshipFragment;
             case 3:
+                //SHARE
+                StudentOpportunitiesFragment opportunitiesFragment = new StudentOpportunitiesFragment();
+                return opportunitiesFragment;
+            case 4:
                 // Share
                 StudentTutorialFragment tutorialFragment = new StudentTutorialFragment();
                 return tutorialFragment;
-            case 4:
+            case 5:
                 // Calendar fragment
                 StudentTradeFragment tradeFragment = new StudentTradeFragment();
                 return tradeFragment;
-            case 5:
+            case 6:
                 // Task fragment
                 StudentEventFragment eventFragment = new StudentEventFragment();
                 return eventFragment;
-            case 6:
+            case 7:
                 // Task fragment
                 StudentProfileFragment profileFragment = new StudentProfileFragment();
                 return profileFragment;
@@ -218,20 +224,24 @@ public class StudentMenuActivity  extends AppCompatActivity {
                         navItemIndex = 2;
                         CURRENT_TAG = TAG_INTERNSHIP;
                         break;
-                    case R.id.nav_student_tutorials:
+                    case R.id.nav_student_opportunities:
                         navItemIndex = 3;
+                        CURRENT_TAG = TAG_OPPORTUNITIES;
+                        break;
+                    case R.id.nav_student_tutorials:
+                        navItemIndex = 4;
                         CURRENT_TAG = TAG_TUTORIAL;
                         break;
                     case R.id.nav_student_trade:
-                        navItemIndex = 4;
+                        navItemIndex = 5;
                         CURRENT_TAG = TAG_TRADE;
                         break;
                     case R.id.nav_student_events:
-                        navItemIndex = 5;
+                        navItemIndex = 6;
                         CURRENT_TAG = TAG_EVENT;
                         break;
                     case R.id.nav_student_profile:
-                        navItemIndex = 6;
+                        navItemIndex = 7;
                         CURRENT_TAG = TAG_PROFILE;
                         break;
                     case R.id.nav_about_us:
