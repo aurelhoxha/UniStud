@@ -16,10 +16,6 @@
         android:title="@string/nav_organization_internships" />
 
     <item
-        android:id="@+id/nav_student_opportunities"
-        android:icon="@drawable/tutorial_icon"
-        android:title="@string/nav_student_opportunities" />
-    <item
         android:id="@+id/nav_student_tutorials"
         android:icon="@drawable/tutorial_icon"
         android:title="@string/nav_student_tutorials" />
