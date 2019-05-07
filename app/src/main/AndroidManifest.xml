@@ -51,6 +51,7 @@
         <activity android:name=".Activities.StudentInternshipProfile"></activity>
         <activity android:name=".Activities.StudentAddItem"></activity>
         <activity android:name=".Activities.StudentTradeWindow"></activity>
+        <activity android:name=".Activities.OrganizationRegister"></activity>
         <activity android:name=".Activities.PlayVideo"
             android:configChanges="orientation|screenSize|layoutDirection"></activity>
 

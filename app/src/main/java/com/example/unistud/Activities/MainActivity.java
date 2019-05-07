@@ -289,13 +289,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     //Redirect to Company Registration
                     if(mAccountCompleted.equals("false")){
-                        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                        Intent intent = new Intent(MainActivity.this, OrganizationRegister.class);
                         startActivity(intent);
                         finish();
                     }
 
                     //Redirect to Company HomePage
                     else {
+
+                        Intent intent = new Intent(MainActivity.this, MenuActivity.class);
+                        startActivity(intent);
+                        finish();
 
                     }
                 }
