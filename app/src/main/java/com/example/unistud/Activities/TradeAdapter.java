@@ -3,8 +3,11 @@ package com.example.unistud.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,16 +27,18 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder> {
 
 
     private Context mContext;
     private List<Trade_Item> itemList;
-    private String userId;
     private String itemId;
+    private String title;
+    private String userId;
 
     //Database References
-    private ProgressDialog mProgress;
     private DatabaseReference databaseReference;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -42,14 +47,30 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, price;
         public ImageView thumbnail, overflow;
+        View mView;
+        public String mItemId;
 
         public MyViewHolder(View view) {
             super(view);
+            mView = view;
             title = (TextView) view.findViewById(R.id.title);
             price = (TextView) view.findViewById(R.id.price);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Items");
+
+        }
+
+        public void setmEventId(String mItemId){
+            this.mItemId = mItemId;
+        }
+
+        public String getmItemId(){
+            return mItemId;
+        }
+
+
+        public String getEventTitle(){
+            return title.toString();
         }
     }
 
@@ -72,6 +93,10 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
         Trade_Item item = itemList.get(position);
         holder.title.setText(item.getTitle());
         holder.price.setText(item.getPrice() + " TL");
+
+         itemId = item.getItemId(); //geting the item ID
+
+         title = item.getTitle();
 
 
         // loading item cover using Glide library
@@ -109,7 +134,12 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                    //Initialize the database
+                    mFirebaseAuth = FirebaseAuth.getInstance();
+                    mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                    userId = mFirebaseUser.getUid();
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items").child(itemId).child("item_name");
+                    databaseReference.setValue(title);
 
                     return true;
                 case R.id.action_view_details:

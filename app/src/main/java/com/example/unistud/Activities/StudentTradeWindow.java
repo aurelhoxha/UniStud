@@ -77,9 +77,9 @@ public class StudentTradeWindow  extends AppCompatActivity {
             if(category.equals("Books"))
                 Glide.with(this).load(R.drawable.cover1).into((ImageView) findViewById(R.id.backdrop));
             if(category.equals("Notes"))
-                Glide.with(this).load(R.drawable.cover2).into((ImageView) findViewById(R.id.backdrop));
-            if(category.equals("Devices"))
                 Glide.with(this).load(R.drawable.cover3).into((ImageView) findViewById(R.id.backdrop));
+            if(category.equals("Devices"))
+                Glide.with(this).load(R.drawable.cover2).into((ImageView) findViewById(R.id.backdrop));
             if(category.equals("Others"))
                 Glide.with(this).load(R.drawable.cover4).into((ImageView) findViewById(R.id.backdrop));
 
