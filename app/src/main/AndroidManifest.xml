@@ -50,6 +50,10 @@
         <activity android:name=".Activities.StudentEventProfile"></activity>
         <activity android:name=".Activities.StudentInternshipProfile"></activity>
         <activity android:name=".Activities.StudentAddItem"></activity>
+        <activity android:name=".Activities.ProfileTutorials"></activity>
+        <activity android:name=".Activities.ProfileInternships"></activity>
+        <activity android:name=".Activities.ProfileEvents"></activity>
+        <activity android:name=".Activities.ProfileItems"></activity>
         <activity android:name=".Activities.StudentTradeWindow"></activity>
         <activity android:name=".Activities.PlayVideo"
             android:configChanges="orientation|screenSize|layoutDirection"></activity>
