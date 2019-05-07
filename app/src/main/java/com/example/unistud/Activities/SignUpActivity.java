@@ -132,13 +132,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     currentUserTable.child("email").setValue(userEmail);
                     currentUserTable.child("profile_completed").setValue("false");
                     if(accountType.equals("Organization")){
-                        currentUserTable.child("profile_photo").setValue("https://firebasestorage.googleapis.com/v0/b/unistud-1594c.appspot.com/o/DefaultFiles%2Fphoto.png?alt=media&token=e59196f2-3dc2-4755-b31e-917ba6fb98df");
+                        currentUserTable.child("profile_photo").setValue("https://firebasestorage.googleapis.com/v0/b/unistud-1594c.appspot.com/o/DefaultFiles%2Fphoto.jpg?alt=media&token=5fd784e6-c965-46b5-9032-e34d2f8a232b");
                         currentUserTable.child("description").setValue("");
                         currentUserTable.child("domain").setValue("");
                         currentUserTable.child("location").setValue("");
                     }
                     else {
-                        currentUserTable.child("profile_photo").setValue("https://firebasestorage.googleapis.com/v0/b/unistud-1594c.appspot.com/o/DefaultFiles%2Fphoto.png?alt=media&token=e59196f2-3dc2-4755-b31e-917ba6fb98df");
+                        currentUserTable.child("profile_photo").setValue("https://firebasestorage.googleapis.com/v0/b/unistud-1594c.appspot.com/o/DefaultFiles%2Fphoto.jpg?alt=media&token=5fd784e6-c965-46b5-9032-e34d2f8a232b");
                         currentUserTable.child("birthday").setValue("");
                         currentUserTable.child("gender").setValue("");
                         currentUserTable.child("university_country").setValue("");
