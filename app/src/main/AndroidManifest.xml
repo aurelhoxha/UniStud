@@ -55,7 +55,8 @@
         <activity android:name=".Activities.ProfileEvents"></activity>
         <activity android:name=".Activities.ProfileItems"></activity>
         <activity android:name=".Activities.StudentTradeWindow"></activity>
-        <activity android:name=".Activities.OrganizationRegister"></activity>
+        <activity android:name=".Activities.StudentUniversities"></activity>
+        <activity android:name=".Activities.StudentInternships"></activity>
         <activity android:name=".Activities.PlayVideo"
             android:configChanges="orientation|screenSize|layoutDirection"></activity>
 

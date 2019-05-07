@@ -5,17 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.unistud.R;
 
-public class ProfileItems extends AppCompatActivity {
-
-
-
+public class StudentUniversities extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_items);
+        setContentView(R.layout.activity_student_universities);
     }
-
-
-
 }
