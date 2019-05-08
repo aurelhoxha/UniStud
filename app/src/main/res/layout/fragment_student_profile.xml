@@ -16,8 +16,9 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image" />
+            android:id="@+id/profilee_image"
+            />
+
 
         <ImageView
             android:layout_width="match_parent"
