@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.unistud.Activities.EditUserProfile;
 import com.example.unistud.Activities.PlayVideo;
 import com.example.unistud.Activities.ProfileEvents;
 import com.example.unistud.Activities.ProfileInternships;
@@ -85,6 +86,8 @@ public class StudentProfileFragment extends Fragment {
     private String itemCount = "0";
     String img;
 
+    private final String USER_ID = "userId";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,6 +104,14 @@ public class StudentProfileFragment extends Fragment {
         itemstxt = (TextView)myFragmentView.findViewById(R.id.item_txt);
         deleteProfile = myFragmentView.findViewById(R.id.delete_account);
         editProfile = myFragmentView.findViewById(R.id.edit_profile);
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditUserProfile.class);
+                startActivityForResult(intent,1);
+            }
+        });
 
 //        deleteProfile.setOnClickListener(new View.OnClickListener() {
 //            @Override
