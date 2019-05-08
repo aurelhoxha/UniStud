@@ -143,8 +143,10 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
                     mFirebaseAuth = FirebaseAuth.getInstance();
                     mFirebaseUser = mFirebaseAuth.getCurrentUser();
                     userId = mFirebaseUser.getUid();
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items").child(itemId).child("item_name");
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items").child(itemId).child("objectTitle");
                     databaseReference.setValue(title);
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items").child(itemId).child("objectId");
+                    databaseReference.setValue(itemId);
 
                     return true;
                 case R.id.action_view_details:

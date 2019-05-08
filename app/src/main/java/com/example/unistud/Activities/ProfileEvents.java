@@ -51,6 +51,7 @@ public class ProfileEvents extends AppCompatActivity {
 
     private ArrayList<Event> eventsList;
 
+
     //Variables to save to display event
     private String eventTitle;
     private String eventDate;
@@ -74,7 +75,7 @@ public class ProfileEvents extends AppCompatActivity {
         userId = mFirebaseUser.getUid();
 
         //databaseReference = FirebaseDatabase.getInstance().getReference().child("Events");
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events");
+
 
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -91,7 +92,7 @@ public class ProfileEvents extends AppCompatActivity {
         prepare();
 
         try {
-            Glide.with(this).load(R.drawable.cover3).into((ImageView) findViewById(R.id.backdrop));
+            Glide.with(this).load(R.drawable.cover2).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,50 +101,8 @@ public class ProfileEvents extends AppCompatActivity {
     }
 
 
-
-
-
-
-//        options = new FirebaseRecyclerOptions.Builder<Event>()
-//                .setQuery(databaseReference, Event.class).build();
-//
-//        adapter = new FirebaseRecyclerAdapter<Event, EventViewHolder> (options) {
-//            @Override
-//            protected void onBindViewHolder(@NonNull EventViewHolder holder, int position, @NonNull Event model) {
-//                System.out.println(model.getEventId());
-//
-//                holder.setEventTitle(model.getEventTitle());
-//                holder.setEventDate(model.getEventDate());
-//                //holder.setEventImage(getApplicationContext(),model.getEventImage());
-//                //holder.setmEventId(model.getEventId());
-//                final String eventId = holder.getmEventId();
-//
-////                holder.getmViewEvent().setOnClickListener(new View.OnClickListener() {
-////                    @Override
-////                    public void onClick(View v) {
-////                        Intent intent = new Intent(getApplicationContext(), StudentEventProfile.class);
-////                        intent.putExtra(EVENT_ID, eventId);
-////                        startActivityForResult(intent,1);
-////                    }
-////                });
-//            }
-//
-//            @NonNull
-//            @Override
-//            public EventViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-//                View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_event_list,viewGroup,false);
-//                return new EventViewHolder(view);
-//            }
-//        };
-//
-//        mEventList.setLayoutManager(new LinearLayoutManager(this));
-//        adapter.startListening();
-//        mEventList.setAdapter(adapter);
-
-
-
     private void prepare(){
-
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -168,14 +127,19 @@ public class ProfileEvents extends AppCompatActivity {
 
                             eventsList.add(event);
                             Log.d("BLAAAAAAAA", eventsList.get(0).getEventTitle() + "");
+
+                            adapter.notifyDataSetChanged();
                         }
+
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
                     });
+                   // Log.d("vcccccccc", eventsList.get(0).getEventTitle() + "");
                 }
+
             }
 
 
@@ -185,9 +149,9 @@ public class ProfileEvents extends AppCompatActivity {
             }
         });
 
-        Log.d("xxxxxxxxxxxxxxxxx", eventsList.get(0).getEventTitle() + "");
+        //Log.d("xxxxxxxxxxxxxxxxx", eventsList.get(0).getEventTitle() + "");
 
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
     }
 
 

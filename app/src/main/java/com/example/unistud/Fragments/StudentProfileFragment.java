@@ -275,9 +275,9 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                //Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
+                Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
                 //intent.putExtra(TUTORIAL_ID, tutorialID);
-                // startActivityForResult(intent,1);
+                 startActivityForResult(intent,1);
             }
         });
 
@@ -286,9 +286,9 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                //Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
+                Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
                 //intent.putExtra(TUTORIAL_ID, tutorialID);
-                //startActivityForResult(intent,1);
+                startActivityForResult(intent,1);
             }
         });
 
