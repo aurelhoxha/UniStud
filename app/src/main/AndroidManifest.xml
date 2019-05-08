@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -51,6 +53,7 @@
         <activity android:name=".Activities.StudentInternshipProfile"></activity>
         <activity android:name=".Activities.StudentAddItem"></activity>
         <activity android:name=".Activities.ProfileTutorials"></activity>
+        <activity android:name=".Activities.OrganizationRegister"></activity>
         <activity android:name=".Activities.ProfileInternships"></activity>
         <activity android:name=".Activities.ProfileEvents"></activity>
         <activity android:name=".Activities.ProfileItems"></activity>

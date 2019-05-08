@@ -67,7 +67,7 @@ public class StudentEventProfile extends AppCompatActivity {
         mEventSaveButton = findViewById(R.id.student_event_profile_save);
         mProgress    = new ProgressDialog(this);
 
-        //Get The Internship ID
+        //Get The Event ID
         Intent intent = getIntent();
         mEventId = intent.getStringExtra(EVENT_ID);
 
@@ -99,15 +99,17 @@ public class StudentEventProfile extends AppCompatActivity {
             }
         });
 
+
         mEventSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mProgress.setMessage("Saving the Event ... ");
                 mProgress.show();
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events").child(mEventId).child("event_name");
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events").child(mEventId).child("objectTitle");
                 databaseReference.setValue(eventTitle);
 
-
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events").child(mEventId).child("objectId");
+                databaseReference.setValue(mEventId);
                 mProgress.dismiss();
             }
         });

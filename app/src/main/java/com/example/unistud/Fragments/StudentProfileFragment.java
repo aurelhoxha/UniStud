@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,13 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class StudentProfileFragment extends Fragment {
 
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceTutorials;
+    private DatabaseReference databaseReferenceEvents;
+    private DatabaseReference databaseReferenceInternships;
+    private DatabaseReference databaseReferenceItems;
+
+    private Button deleteProfile;
+    private Button editProfile;
 
     public static final String TUTORIAL_ID = "TutorialId";
     public static final String TUTORIAL_STATUS = "TutorialStatus";
@@ -78,6 +86,16 @@ public class StudentProfileFragment extends Fragment {
         internshipstxt = (TextView)myFragmentView.findViewById(R.id.internship_txt);
         itemsnr = (TextView)myFragmentView.findViewById(R.id.item_nr);
         itemstxt = (TextView)myFragmentView.findViewById(R.id.item_txt);
+        deleteProfile = myFragmentView.findViewById(R.id.delete_account);
+        editProfile = myFragmentView.findViewById(R.id.edit_profile);
+
+//        deleteProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users")
+//            }
+//        });
+
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -85,9 +103,8 @@ public class StudentProfileFragment extends Fragment {
         //databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child("saved_events");
         //tutorialCount = databaseReference.
 
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Tutorials");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReferenceTutorials = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_tutorials");
+        databaseReferenceTutorials.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
@@ -95,6 +112,60 @@ public class StudentProfileFragment extends Fragment {
                 }
                 else {
                     tutorialsnr.setText("0");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReferenceEvents = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events");
+        databaseReferenceEvents.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    eventsnr.setText((int)dataSnapshot.getChildrenCount() + "");
+                }
+                else {
+                    eventsnr.setText("0");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReferenceInternships = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_internships");
+        databaseReferenceInternships.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    internshipsnr.setText((int)dataSnapshot.getChildrenCount() + "");
+                }
+                else {
+                    internshipsnr.setText("0");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReferenceItems = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items");
+        databaseReferenceItems.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    itemsnr.setText((int)dataSnapshot.getChildrenCount() + "");
+                }
+                else {
+                    itemsnr.setText("0");
                 }
             }
 
@@ -136,9 +207,8 @@ public class StudentProfileFragment extends Fragment {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Toast.makeText(getApplicationContext(),"Eve1", Toast.LENGTH_LONG).show();
-                //Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
-                //intent.putExtra(TUTORIAL_ID, tutorialID);
-                //startActivityForResult(intent,1);
+                Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
+                startActivityForResult(intent,1);
             }
         });
 
@@ -148,9 +218,8 @@ public class StudentProfileFragment extends Fragment {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                 Toast.makeText(getApplicationContext(),"Eve2", Toast.LENGTH_LONG).show();
-                //Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
-                //intent.putExtra(TUTORIAL_ID, tutorialID);
-                //startActivityForResult(intent,1);
+                Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
+                startActivityForResult(intent,1);
             }
         });
 

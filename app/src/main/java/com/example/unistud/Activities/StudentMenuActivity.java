@@ -43,7 +43,6 @@ public class StudentMenuActivity  extends AppCompatActivity {
     private static final String TAG_HOME = "Home";
     private static final String TAG_UNIVERSITY = "University";
     private static final String TAG_INTERNSHIP = "Internship";
-    private static final String TAG_OPPORTUNITIES = "Opportunities";
     private static final String TAG_TUTORIAL = "Tutorial";
     private static final String TAG_TRADE = "Trade";
     private static final String TAG_EVENT = "Events";

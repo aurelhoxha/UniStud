@@ -304,29 +304,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
                 else {
-                    Student mStudent = dataSnapshot.child("Students").child(userId).getValue(Student.class);
-                    String mAccountCompleted = mStudent.getProfile_completed();
+                    if(dataSnapshot.child("Students").child(userId).exists()){
+                        Student mStudent = dataSnapshot.child("Students").child(userId).getValue(Student.class);
+                        String mAccountCompleted = mStudent.getProfile_completed();
 
-                    //Redirect to Student Registration
-                    if(mAccountCompleted.equals("false")){
-                        if(mStudent.getBirthday().equals("")){
-                            Intent intent = new Intent(MainActivity.this, StudentRegister1.class);
-                            startActivity(intent);
-                            finish();
+                        //Redirect to Student Registration
+                        if(mAccountCompleted.equals("false")){
+                            if(mStudent.getBirthday().equals("")){
+                                Intent intent = new Intent(MainActivity.this, StudentRegister1.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                            else{
+                                Intent intent = new Intent(MainActivity.this, StudentRegister2.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
-                        else{
-                            Intent intent = new Intent(MainActivity.this, StudentRegister2.class);
+
+                        //Redirect to Student HomePage
+                        else {
+                            Intent intent = new Intent(MainActivity.this, StudentMenuActivity.class);
                             startActivity(intent);
                             finish();
                         }
                     }
 
-                    //Redirect to Student HomePage
-                    else {
-                        Intent intent = new Intent(MainActivity.this, StudentMenuActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
                 }
             }
 

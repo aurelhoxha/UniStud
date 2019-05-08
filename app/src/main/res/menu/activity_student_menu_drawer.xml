@@ -14,7 +14,6 @@
         android:id="@+id/nav_student_interships"
         android:icon="@drawable/internship_icon"
         android:title="@string/nav_organization_internships" />
-
     <item
         android:id="@+id/nav_student_tutorials"
         android:icon="@drawable/tutorial_icon"
