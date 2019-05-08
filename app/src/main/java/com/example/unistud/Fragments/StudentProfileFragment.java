@@ -2,21 +2,26 @@ package com.example.unistud.Fragments;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.unistud.Activities.EditUserProfile;
 import com.example.unistud.Activities.PlayVideo;
 import com.example.unistud.Activities.ProfileEvents;
 import com.example.unistud.Activities.ProfileInternships;
@@ -36,6 +41,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -43,6 +49,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class StudentProfileFragment extends Fragment {
 
+    private DatabaseReference db;
     private DatabaseReference databaseReference;
     private DatabaseReference databaseReferenceTutorials;
     private DatabaseReference databaseReferenceEvents;
@@ -62,6 +69,8 @@ public class StudentProfileFragment extends Fragment {
 
     private TextView userName;
 
+    private ImageView profileImg;
+
     private TextView tutorialsnr;
     private TextView tutorialstxt;
     private TextView eventsnr;
@@ -75,6 +84,9 @@ public class StudentProfileFragment extends Fragment {
     private String eventCount = "0";
     private String internshipCount = "0";
     private String itemCount = "0";
+    String img;
+
+    private final String USER_ID = "userId";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,6 +105,14 @@ public class StudentProfileFragment extends Fragment {
         deleteProfile = myFragmentView.findViewById(R.id.delete_account);
         editProfile = myFragmentView.findViewById(R.id.edit_profile);
 
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditUserProfile.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
 //        deleteProfile.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -104,27 +124,31 @@ public class StudentProfileFragment extends Fragment {
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         userId = mFirebaseUser.getUid();
 
+        profileImg = (ImageView)myFragmentView.findViewById(R.id.profilee_image);
+
         userName = (TextView)myFragmentView.findViewById(R.id.user_name);
-        userName.setOnClickListener(new View.OnClickListener() {
+
+        db = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId);
+        db.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId);
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-                            userName.setText((String) dataSnapshot.child("fullname").getValue());
-                        }
-                    }
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    userName.setText((String) dataSnapshot.child("fullname").getValue());
+                    img = (String) dataSnapshot.child("profile_photo").getValue();
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d("mmmm", img + "");
+                    Picasso.get().load(img).into(profileImg);
+                }
+                else {
 
-                    }
-                });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
-
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
