@@ -34,6 +34,7 @@
     <string name="action_add_tutorial">Add Tutorial</string>
     <string name="action_add_univeristy">Add University</string>
     <string name="action_add_item">Add Item</string>
+    <string name="action_check_uni">Check Messages</string>
     <!--CALENDAR STRINGS-->
     <string name="dialog_calendar">ADD NEW EVENT</string>
 

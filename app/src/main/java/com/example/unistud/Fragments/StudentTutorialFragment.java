@@ -99,6 +99,7 @@ public class StudentTutorialFragment extends Fragment {
                             if(!tutorialURL.equals("")) {
                                 Intent intent = new Intent(getApplicationContext(), PlayVideo.class);
                                 intent.putExtra(TUTORIAL_STATUS, tutorialStatus);
+                                intent.putExtra(TUTORIAL_LINK, tutorialURL);
                                 startActivityForResult(intent, 1);
                             }
                             else {
