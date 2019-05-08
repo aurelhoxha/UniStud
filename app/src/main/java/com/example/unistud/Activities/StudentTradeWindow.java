@@ -43,6 +43,8 @@ public class StudentTradeWindow  extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TradeAdapter adapter;
     private List<Trade_Item> itemList;
+    private List<Trade_Item> input;
+
     private String category;
 
     ///Database Variables

@@ -175,12 +175,10 @@ public class OrganizationEventProfile extends AppCompatActivity {
                                 dataSnapshot.getRef().child("eventDate").setValue(mEventDateTextView.getText().toString());
 
                             }
-
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-
                         }
                     });
                 }

@@ -81,6 +81,10 @@ public class PlayVideo extends AppCompatActivity {
         tutorialLINK = intent.getStringExtra(TUTORIAL_LINK);
         tutorialStatus = intent.getStringExtra(TUTORIAL_STATUS);
 
+        if(tutorialLINK == null){
+            tutorialLINK = "";
+        }
+
 
 
         if(tutorialStatus.equals("live")){
@@ -91,8 +95,8 @@ public class PlayVideo extends AppCompatActivity {
         }
         else {
             link = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4";
-            if(!link.equals("")) {
-                videoUri = Uri.parse(link);
+            if(!tutorialLINK.equals("")) {
+                videoUri = Uri.parse(tutorialLINK);
                 videoSource = new ExtractorMediaSource(videoUri,
                         dataSourceFactory, extractorsFactory, null, null);
             }
