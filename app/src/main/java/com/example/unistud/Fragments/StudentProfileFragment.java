@@ -37,6 +37,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class StudentProfileFragment extends Fragment {
@@ -57,6 +59,8 @@ public class StudentProfileFragment extends Fragment {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private String userId;
+
+    private TextView userName;
 
     private TextView tutorialsnr;
     private TextView tutorialstxt;
@@ -95,6 +99,31 @@ public class StudentProfileFragment extends Fragment {
 //                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users")
 //            }
 //        });
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        userId = mFirebaseUser.getUid();
+
+        userName = (TextView)myFragmentView.findViewById(R.id.user_name);
+        userName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId);
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            userName.setText((String) dataSnapshot.child("fullname").getValue());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
 
 
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -179,7 +208,6 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(), "Tuts1", Toast.LENGTH_LONG).show();
 
                 //Intent intent = new Intent(getApplicationContext(), ProfileTutorials.class);
                 //intent.putExtra(TUTORIAL_ID, tutorialID);
@@ -193,7 +221,6 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(),"Tuts2", Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(getApplicationContext(), ProfileTutorials.class);
                 //intent.putExtra(TUTORIAL_ID, tutorialID);
                 //startActivityForResult(intent,1);
@@ -206,7 +233,6 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(),"Eve1", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
                 startActivityForResult(intent,1);
             }
@@ -217,7 +243,6 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(),"Eve2", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
                 startActivityForResult(intent,1);
             }
@@ -228,7 +253,6 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(),"Int1", Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(getApplicationContext(), ProfileInternships.class);
                 //intent.putExtra(TUTORIAL_ID, tutorialID);
                 //startActivityForResult(intent,1);
@@ -240,7 +264,6 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(),"Int2", Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(getApplicationContext(), ProfileInternships.class);
                 //intent.putExtra(TUTORIAL_ID, tutorialID);
                 //startActivityForResult(intent,1);
@@ -252,7 +275,6 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(),"Ite1", Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
                 //intent.putExtra(TUTORIAL_ID, tutorialID);
                 // startActivityForResult(intent,1);
@@ -264,7 +286,6 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(getApplicationContext(),"Ite2", Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
                 //intent.putExtra(TUTORIAL_ID, tutorialID);
                 //startActivityForResult(intent,1);
@@ -275,6 +296,3 @@ public class StudentProfileFragment extends Fragment {
         return myFragmentView;
     }
 }
-
-
-
