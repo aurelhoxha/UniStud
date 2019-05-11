@@ -324,6 +324,9 @@ public class StudentMenuActivity  extends AppCompatActivity {
         if (navItemIndex == 4) {
             getMenuInflater().inflate(R.menu.action_bar_trade_item, menu);
         }
+        if (navItemIndex == 1) {
+            getMenuInflater().inflate(R.menu.action_bar_university, menu);
+        }
 
         return true;
     }
@@ -345,6 +348,10 @@ public class StudentMenuActivity  extends AppCompatActivity {
             addTradeItem();
         }
 
+        if(id == R.id.action_check_messages) {
+            checkMessages();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -356,6 +363,11 @@ public class StudentMenuActivity  extends AppCompatActivity {
 
     private void addTradeItem() {
         Intent myIntent = new Intent(getApplicationContext(), StudentAddItem.class);
+        startActivityForResult(myIntent,1);
+    }
+
+    private void checkMessages(){
+        Intent myIntent = new Intent(getApplicationContext(), MyMessages.class);
         startActivityForResult(myIntent,1);
     }
 

@@ -3,6 +3,7 @@ package com.example.unistud.Helpers;
 public class Student {
 
     //Variables
+    private String accountId;
     private String account_type;
     private String birthday;
     private String email;
@@ -18,7 +19,8 @@ public class Student {
 
     }
 
-    public Student(String account_type, String birthday, String email, String fullname, String gender, String mobile_phone, String profile_completed, String profile_photo,String university_country, String university_name) {
+    public Student(String accountId, String account_type, String birthday, String email, String fullname, String gender, String mobile_phone, String profile_completed, String profile_photo,String university_country, String university_name) {
+        this.accountId = accountId;
         this.account_type = account_type;
         this.birthday = birthday;
         this.email = email;
@@ -29,6 +31,14 @@ public class Student {
         this.profile_photo = profile_photo;
         this.university_country = university_country;
         this.university_name = university_name;
+    }
+
+    public String getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getAccount_type() {
