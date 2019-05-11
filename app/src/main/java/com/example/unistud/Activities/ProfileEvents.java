@@ -123,10 +123,7 @@ public class ProfileEvents extends AppCompatActivity {
                             eventCreator = (String) dataSnapshot.child("eventCreatorId").getValue();
 
                             Event event = new Event(id, eventTitle, eventDesc, eventDate, eventLocation, eventImage,eventCreator);
-                            Log.d("bbbbbbbbbbb", event.getEventTitle() + "");
-
                             eventsList.add(event);
-                            Log.d("BLAAAAAAAA", eventsList.get(0).getEventTitle() + "");
 
                             adapter.notifyDataSetChanged();
                         }

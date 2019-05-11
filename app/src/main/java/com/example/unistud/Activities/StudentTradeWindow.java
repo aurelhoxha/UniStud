@@ -104,6 +104,7 @@ public class StudentTradeWindow  extends AppCompatActivity {
 
                     Trade_Item a = taskSnapshot.getValue(Trade_Item.class);
                     itemList.add(a);
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -114,7 +115,7 @@ public class StudentTradeWindow  extends AppCompatActivity {
         });
 
 
-        adapter.notifyDataSetChanged();
+        //adapter.notifyDataSetChanged();
     }
 
     /**

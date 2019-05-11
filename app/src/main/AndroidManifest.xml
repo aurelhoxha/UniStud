@@ -58,6 +58,7 @@
         <activity android:name=".Activities.MessageActivity"></activity>
         <activity android:name=".Activities.MyMessages"></activity>
         <activity android:name=".Activities.StudentUserList"></activity>
+        <activity android:name=".Activities.StudentItemProfile"></activity>
         <activity android:name=".Activities.PlayVideo"
             android:configChanges="orientation|screenSize|layoutDirection"></activity>
 
