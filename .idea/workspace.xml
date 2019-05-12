@@ -19,14 +19,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/InternshipAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/InternshipAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ObjectAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ObjectAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileItems.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +135,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="2" />
-          <entry key="java" value="69" />
+          <entry key="java" value="71" />
           <entry key="jpg" value="1" />
           <entry key="png" value="1" />
           <entry key="xml" value="29" />
@@ -147,19 +145,19 @@
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="Image" value="2" />
-          <entry key="JAVA" value="69" />
+          <entry key="JAVA" value="71" />
           <entry key="XML" value="29" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3383" />
+          <entry key="java" value="3538" />
           <entry key="xml" value="333" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3383" />
+          <entry key="JAVA" value="3538" />
           <entry key="XML" value="333" />
         </counts>
       </usages-collector>
@@ -180,17 +178,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ObjectAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="90" column="46" lean-forward="true" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+            <state relative-caret-position="132">
+              <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
+              <folding>
+                <element signature="e#2990#4588#0" expanded="true" />
+                <element signature="e#4587#4588#0" expanded="true" />
+                <element signature="e#5685#5686#0" expanded="true" />
+                <element signature="e#5724#5725#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/TradeAdapter.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ItemsAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="41" column="25" lean-forward="true" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+            <state relative-caret-position="186">
+              <caret line="161" column="7" lean-forward="true" selection-start-line="161" selection-start-column="7" selection-end-line="161" selection-end-column="7" />
               <folding>
                 <element signature="e#2430#2431#0" expanded="true" />
                 <element signature="e#2476#2477#0" expanded="true" />
@@ -198,6 +202,27 @@
                 <element signature="e#2551#2552#0" expanded="true" />
                 <element signature="e#2592#2593#0" expanded="true" />
                 <element signature="e#2639#2640#0" expanded="true" />
+                <element signature="e#3595#5252#0" expanded="true" />
+                <element signature="e#5251#5252#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/TradeAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="187" column="20" selection-end-line="213" />
+              <folding>
+                <element signature="e#2430#2431#0" expanded="true" />
+                <element signature="e#2476#2477#0" expanded="true" />
+                <element signature="e#2513#2514#0" expanded="true" />
+                <element signature="e#2551#2552#0" expanded="true" />
+                <element signature="e#2592#2593#0" expanded="true" />
+                <element signature="e#2639#2640#0" expanded="true" />
+                <element signature="e#3595#5252#0" expanded="true" />
+                <element signature="e#5251#5252#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -207,7 +232,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/InternshipAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1242">
-              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+              <caret line="87" selection-start-line="87" selection-end-line="87" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -249,11 +274,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileItems.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="109" column="20" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
+            <state relative-caret-position="774">
+              <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -275,8 +300,8 @@
         <option value="valueResourceFile" />
         <option value="Interface" />
         <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -306,7 +331,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_student_event_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Fragments/StudentTutorialFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_student_tutorials.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Fragments/StudentEventFragment.java" />
@@ -348,15 +372,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileEvents.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_student_unitrade.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentTradeWindow.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileItems.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Helpers/ItemsAdapterListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/TradeAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/StudentInternshipProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileInternships.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_profile.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ObjectAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/InternshipAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ObjectAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ItemsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileItems.java" />
       </list>
     </option>
   </component>
@@ -406,18 +431,6 @@
               <item name="UniStud" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="UniStud" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="menu" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="UniStud" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="UniStud" type="1abcf292:AndroidViewProjectNode" />
@@ -618,7 +631,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4980595" visible="true" weight="0.15298508" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4980595" visible="true" weight="0.15298508" />
       <window_info id="Structure" order="2" sideWeight="0.5019405" side_tool="true" weight="0.17643923" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" sideWeight="0.5007133" side_tool="true" weight="0.32956383" />
@@ -631,7 +644,7 @@
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4911147" weight="0.16523606" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.29584223" side_tool="true" weight="0.13412017" />
       <window_info anchor="bottom" id="Version Control" order="5" sideWeight="0.49596122" weight="0.13090129" />
-      <window_info active="true" anchor="bottom" auto_hide="true" id="Build" order="6" sideWeight="0.70415777" visible="true" weight="0.10622317" />
+      <window_info anchor="bottom" auto_hide="true" id="Build" order="6" sideWeight="0.70415777" weight="0.10622317" />
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="Find" order="8" sideWeight="0.49757674" weight="0.20547946" />
       <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.49893278" weight="0.32935324" />
@@ -691,13 +704,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="gradle update" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Helpers/Organization.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Helpers/Event.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -835,13 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Fragments/StudentProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="289" column="18" selection-start-line="289" selection-start-column="18" selection-end-line="289" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -984,13 +983,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileItems.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="109" column="20" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_trade.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1031,24 +1023,37 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/InternshipAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1242">
-          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Fragments/StudentProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1744">
+          <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ObjectAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="90" column="46" lean-forward="true" selection-start-line="90" selection-start-column="46" selection-end-line="90" selection-end-column="46" />
+        <state relative-caret-position="132">
+          <caret line="148" lean-forward="true" selection-start-line="148" selection-end-line="148" />
+          <folding>
+            <element signature="e#2990#4588#0" expanded="true" />
+            <element signature="e#4587#4588#0" expanded="true" />
+            <element signature="e#5685#5686#0" expanded="true" />
+            <element signature="e#5724#5725#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/TradeAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="41" column="25" lean-forward="true" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+        <state relative-caret-position="558">
+          <caret line="187" column="20" selection-end-line="213" />
           <folding>
             <element signature="e#2430#2431#0" expanded="true" />
             <element signature="e#2476#2477#0" expanded="true" />
@@ -1056,7 +1061,33 @@
             <element signature="e#2551#2552#0" expanded="true" />
             <element signature="e#2592#2593#0" expanded="true" />
             <element signature="e#2639#2640#0" expanded="true" />
+            <element signature="e#3595#5252#0" expanded="true" />
+            <element signature="e#5251#5252#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ItemsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="161" column="7" lean-forward="true" selection-start-line="161" selection-start-column="7" selection-end-line="161" selection-end-column="7" />
+          <folding>
+            <element signature="e#2430#2431#0" expanded="true" />
+            <element signature="e#2476#2477#0" expanded="true" />
+            <element signature="e#2513#2514#0" expanded="true" />
+            <element signature="e#2551#2552#0" expanded="true" />
+            <element signature="e#2592#2593#0" expanded="true" />
+            <element signature="e#2639#2640#0" expanded="true" />
+            <element signature="e#3595#5252#0" expanded="true" />
+            <element signature="e#5251#5252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/unistud/Activities/ProfileItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="774">
+          <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
         </state>
       </provider>
     </entry>

@@ -51,7 +51,7 @@ public class ProfileItems extends AppCompatActivity {
     private String itemCreator;
 
     private RecyclerView recyclerView;
-    private TradeAdapter adapter;
+    private ItemsAdapter adapter;
     String id;
 
 
@@ -68,7 +68,7 @@ public class ProfileItems extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         itemsList = new ArrayList<Trade_Item>();
 
-        adapter = new TradeAdapter(this, itemsList);
+        adapter = new ItemsAdapter(this, itemsList);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
