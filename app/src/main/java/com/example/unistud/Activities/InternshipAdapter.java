@@ -16,8 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.unistud.Helpers.Event;
-import com.example.unistud.Helpers.Internship;
 import com.example.unistud.Helpers.Internship;
 import com.example.unistud.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -161,6 +159,13 @@ public class InternshipAdapter extends RecyclerView.Adapter<InternshipAdapter.My
 
                 case R.id.action_remove:
                     Toast.makeText(mContext, "Remove from favorites", Toast.LENGTH_SHORT).show();
+                    mFirebaseAuth = FirebaseAuth.getInstance();
+                    mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                    userId = mFirebaseUser.getUid();
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_internships").child(idWeNeed).child("objectTitle");
+                    databaseReference.setValue(null);
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_internships").child(idWeNeed).child("objectId");
+                    databaseReference.setValue(null);
                     return true;
                 default:
             }

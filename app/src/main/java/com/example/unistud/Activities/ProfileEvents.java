@@ -92,7 +92,7 @@ public class ProfileEvents extends AppCompatActivity {
         prepare();
 
         try {
-            Glide.with(this).load(R.drawable.cover2).into((ImageView) findViewById(R.id.backdrop));
+            Glide.with(this).load(R.drawable.events_p).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
         }
