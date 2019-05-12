@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -44,12 +45,16 @@
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".Activities.StudentMenuActivity"></activity>
         <activity android:name=".Activities.TutorialLiveStream"></activity>
-        <activity android:name=".Activities.StudentAddTutorial"></activity>
-        <activity android:name=".Activities.StudentRegister1"></activity>
-        <activity android:name=".Activities.StudentRegister2"></activity>
+        <activity android:name=".Activities.StudentAddTutorial"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".Activities.StudentRegister1"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".Activities.StudentRegister2"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".Activities.StudentEventProfile"></activity>
         <activity android:name=".Activities.StudentInternshipProfile"></activity>
-        <activity android:name=".Activities.StudentAddItem"></activity>
+        <activity android:name=".Activities.StudentAddItem"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".Activities.ProfileTutorials"></activity>
         <activity android:name=".Activities.ProfileInternships"></activity>
         <activity android:name=".Activities.ProfileEvents"></activity>
@@ -58,7 +63,8 @@
         <activity android:name=".Activities.MessageActivity"></activity>
         <activity android:name=".Activities.MyMessages"></activity>
         <activity android:name=".Activities.StudentUserList"></activity>
-        <activity android:name=".Activities.EditUserProfile"></activity>
+        <activity android:name=".Activities.EditUserProfile"
+                  android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".Activities.StudentItemProfile"></activity>
         <activity android:name=".Activities.PlayVideo"
             android:configChanges="orientation|screenSize|layoutDirection"></activity>

@@ -87,7 +87,6 @@ public class ProfileItems extends AppCompatActivity {
 
     }
 
-
     private void prepare(){
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -97,6 +96,8 @@ public class ProfileItems extends AppCompatActivity {
                     SavedObject a = taskSnapshot.getValue(SavedObject.class);
 
                     id = a.getObjectId();
+
+                    //CHECK IF ID EXISTS IN BOOKS, NOTES, DEVICES OR OTHER AND THEN PROCEED
                     databaseReferenceEvent = FirebaseDatabase.getInstance().getReference().child("Trade").child("Books").child(id);
                     databaseReferenceEvent.addValueEventListener(new ValueEventListener() {
                         @Override

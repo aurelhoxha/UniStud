@@ -1,5 +1,7 @@
 package com.example.unistud.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
@@ -22,12 +24,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.unistud.Activities.EditUserProfile;
+import com.example.unistud.Activities.MainActivity;
 import com.example.unistud.Activities.PlayVideo;
 import com.example.unistud.Activities.ProfileEvents;
 import com.example.unistud.Activities.ProfileInternships;
 import com.example.unistud.Activities.ProfileItems;
 import com.example.unistud.Activities.ProfileTutorials;
 import com.example.unistud.Activities.TutorialLiveStream;
+import com.example.unistud.Helpers.Student;
 import com.example.unistud.Helpers.Tutorial;
 import com.example.unistud.Helpers.TutorialViewHolder;
 import com.example.unistud.R;
@@ -59,10 +63,6 @@ public class StudentProfileFragment extends Fragment {
     private Button deleteProfile;
     private Button editProfile;
 
-    public static final String TUTORIAL_ID = "TutorialId";
-    public static final String TUTORIAL_STATUS = "TutorialStatus";
-    public static final String TUTORIAL_LINK = "TutorialLink";
-
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private String userId;
@@ -80,10 +80,10 @@ public class StudentProfileFragment extends Fragment {
     private TextView itemsnr;
     private TextView itemstxt;
 
-    private String tutorialCount = "0";
-    private String eventCount = "0";
-    private String internshipCount = "0";
-    private String itemCount = "0";
+    private int tutorialCount = 0;
+    private int eventCount = 0;
+    private int internshipCount = 0;
+    private int itemCount = 0;
     String img;
 
     private final String USER_ID = "userId";
@@ -94,8 +94,8 @@ public class StudentProfileFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View myFragmentView = inflater.inflate(R.layout.fragment_student_profile, container, false);
-        tutorialsnr = (TextView)myFragmentView.findViewById(R.id.tutorial_nr);
-        tutorialstxt = (TextView)myFragmentView.findViewById(R.id.tutorial_txt);
+       // tutorialsnr = (TextView)myFragmentView.findViewById(R.id.tutorial_nr);
+        //tutorialstxt = (TextView)myFragmentView.findViewById(R.id.tutorial_txt);
         eventsnr = (TextView)myFragmentView.findViewById(R.id.event_nr);
         eventstxt = (TextView)myFragmentView.findViewById(R.id.event_txt);
         internshipsnr = (TextView)myFragmentView.findViewById(R.id.internship_nr);
@@ -105,6 +105,11 @@ public class StudentProfileFragment extends Fragment {
         deleteProfile = myFragmentView.findViewById(R.id.delete_account);
         editProfile = myFragmentView.findViewById(R.id.edit_profile);
 
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        userId = mFirebaseUser.getUid();
+
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,16 +118,47 @@ public class StudentProfileFragment extends Fragment {
             }
         });
 
-//        deleteProfile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users")
-//            }
-//        });
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        userId = mFirebaseUser.getUid();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+
+        builder.setTitle("Confirm");
+        builder.setMessage("Are you sure?");
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                Toast.makeText(getApplicationContext(), "We are sorry to see you go!", Toast.LENGTH_LONG).show();
+
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+                databaseReference.removeValue();
+                dialog.dismiss();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(intent, 1);
+
+
+            }
+        });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Thank you for staying with us!", Toast.LENGTH_LONG).show();
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+       final AlertDialog alert = builder.create();
+
+        deleteProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.show();
+
+            }
+        });
 
         profileImg = (ImageView)myFragmentView.findViewById(R.id.profilee_image);
 
@@ -137,52 +173,48 @@ public class StudentProfileFragment extends Fragment {
                     img = (String) dataSnapshot.child("profile_photo").getValue();
 
                     Log.d("mmmm", img + "");
-                    Picasso.get().load(img).into(profileImg);
+                    //Picasso.get().load(img).into(profileImg);
                 }
                 else {
-
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        userId = mFirebaseUser.getUid();
-        //databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child("saved_events");
-        //tutorialCount = databaseReference.
-
-        databaseReferenceTutorials = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_tutorials");
-        databaseReferenceTutorials.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    tutorialsnr.setText((int)dataSnapshot.getChildrenCount() + "");
-                }
-                else {
-                    tutorialsnr.setText("0");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReferenceTutorials = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_tutorials");
+//        databaseReferenceTutorials.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if(dataSnapshot.exists()){
+//                    tutorialCount = (int)dataSnapshot.getChildrenCount();
+//                    tutorialsnr.setText((int)dataSnapshot.getChildrenCount() + "");
+//                }
+//                else {
+//                    tutorialsnr.setText("0");
+//                    tutorialCount = 0;
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
         databaseReferenceEvents = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_events");
         databaseReferenceEvents.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    eventCount = (int)dataSnapshot.getChildrenCount();
                     eventsnr.setText((int)dataSnapshot.getChildrenCount() + "");
                 }
                 else {
                     eventsnr.setText("0");
+                    eventCount = 0;
                 }
             }
 
@@ -197,10 +229,12 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    internshipCount = (int)dataSnapshot.getChildrenCount();
                     internshipsnr.setText((int)dataSnapshot.getChildrenCount() + "");
                 }
                 else {
                     internshipsnr.setText("0");
+                    internshipCount = 0;
                 }
             }
 
@@ -215,10 +249,12 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    itemCount = (int)dataSnapshot.getChildrenCount();
                     itemsnr.setText((int)dataSnapshot.getChildrenCount() + "");
                 }
                 else {
                     itemsnr.setText("0");
+                    itemCount = 0;
                 }
             }
 
@@ -228,37 +264,44 @@ public class StudentProfileFragment extends Fragment {
             }
         });
 
-        tutorialsnr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-
-                //Intent intent = new Intent(getApplicationContext(), ProfileTutorials.class);
-                //intent.putExtra(TUTORIAL_ID, tutorialID);
-                //startActivityForResult(intent,1);
-
-            }
-        });
-
-        tutorialstxt.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                //Intent intent = new Intent(getApplicationContext(), ProfileTutorials.class);
-                //intent.putExtra(TUTORIAL_ID, tutorialID);
-                //startActivityForResult(intent,1);
-
-            }
-        });
+//        tutorialsnr.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                if(tutorialCount != 0 ) {
+//                    Intent intent = new Intent(getApplicationContext(), ProfileTutorials.class);
+//                    startActivityForResult(intent,1);
+//                }
+//                else{
+//
+//                }
+//
+//            }
+//        });
+//
+//        tutorialstxt.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                //Intent intent = new Intent(getApplicationContext(), ProfileTutorials.class);
+//                //startActivityForResult(intent,1);
+//
+//            }
+//        });
 
         eventsnr.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
-                startActivityForResult(intent,1);
+                if(eventCount != 0) {
+                    Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
+                    startActivityForResult(intent, 1);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please add an event",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -267,8 +310,13 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
-                startActivityForResult(intent,1);
+                if(eventCount != 0) {
+                    Intent intent = new Intent(getApplicationContext(), ProfileEvents.class);
+                    startActivityForResult(intent, 1);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please add an event",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -277,9 +325,13 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                //Intent intent = new Intent(getApplicationContext(), ProfileInternships.class);
-                //intent.putExtra(TUTORIAL_ID, tutorialID);
-                //startActivityForResult(intent,1);
+                if(internshipCount != 0) {
+                    Intent intent = new Intent(getApplicationContext(), ProfileInternships.class);
+                    startActivityForResult(intent,1);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please add an internship",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -288,9 +340,13 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                //Intent intent = new Intent(getApplicationContext(), ProfileInternships.class);
-                //intent.putExtra(TUTORIAL_ID, tutorialID);
-                //startActivityForResult(intent,1);
+                if(internshipCount != 0) {
+                    Intent intent = new Intent(getApplicationContext(), ProfileInternships.class);
+                    startActivityForResult(intent,1);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please add an internship",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -299,20 +355,27 @@ public class StudentProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
-                //intent.putExtra(TUTORIAL_ID, tutorialID);
-                 startActivityForResult(intent,1);
+                if(itemCount != 0) {
+                    Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
+                    startActivityForResult(intent, 1);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please add an item",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         itemstxt.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
-                //intent.putExtra(TUTORIAL_ID, tutorialID);
-                startActivityForResult(intent,1);
+                if(itemCount != 0) {
+                    Intent intent = new Intent(getApplicationContext(), ProfileItems.class);
+                    startActivityForResult(intent, 1);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Please add an item",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
