@@ -18,12 +18,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.unistud.Helpers.SavedObject;
 import com.example.unistud.Helpers.Trade_Item;
 import com.example.unistud.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -38,6 +42,8 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
     private String title;
     private String category;
     private String userId;
+    private String id;
+    private int pos;
 
     //Database References
     private DatabaseReference databaseReference;
@@ -46,6 +52,10 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
 
     public static final String ITEMID = "";
     public static final String CATEGORY = "";
+
+    int counter = 0;
+    String idWeNeed;
+    String titleWeNeed;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -95,14 +105,13 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Trade_Item item = itemList.get(position);
+
         holder.title.setText(item.getTitle());
         holder.price.setText(item.getPrice() + " TL");
 
-         itemId = item.getItemId(); //geting the item ID
-
-         title = item.getTitle();
-         category= item.getCategory();
-
+        itemId = item.getItemId();
+        title = item.getTitle();
+        category= item.getCategory();
 
         // loading item cover using Glide library
         Glide.with(mContext).load(item.getImage()).into(holder.thumbnail);
@@ -111,6 +120,39 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
             @Override
             public void onClick(View view) {
                 showPopupMenu(holder.overflow);
+                //geting the item ID
+
+                pos = holder.getAdapterPosition();
+
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Trade").child(category);
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot taskSnapshot: dataSnapshot.getChildren()) {
+                                if(counter == pos){
+                                    Log.d("RIGHTTTTTT", counter + " " + pos);
+                                    Trade_Item a = taskSnapshot.getValue(Trade_Item.class);
+                                    idWeNeed = a.getItemId();
+                                    titleWeNeed = a.getTitle();
+                                    break;
+                                }
+                                else {
+                                    Log.d("DIDDDD IT", counter + " ");
+                                    counter++;
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                Log.d("Positionnn", pos + "");
+                //category= holder.getCategory();
             }
         });
     }
@@ -122,6 +164,7 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
+        counter = 0;
         inflater.inflate(R.menu.menu_trade, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
         popup.show();
@@ -131,29 +174,30 @@ public class TradeAdapter extends RecyclerView.Adapter<TradeAdapter.MyViewHolder
      * Click listener for popup menu items
      */
     class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
-
-        public MyMenuItemClickListener() {
-        }
-
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_favourite:
                     //Initialize the database
+                    Log.d("Positionnn111", pos + "");
                     mFirebaseAuth = FirebaseAuth.getInstance();
                     mFirebaseUser = mFirebaseAuth.getCurrentUser();
                     userId = mFirebaseUser.getUid();
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items").child(itemId).child("objectTitle");
-                    databaseReference.setValue(title);
-                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items").child(itemId).child("objectId");
-                    databaseReference.setValue(itemId);
-
+                    Log.d("IDWENEED", idWeNeed);
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items").child(idWeNeed).child("objectTitle");
+                    databaseReference.setValue(titleWeNeed);
+                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_items").child(idWeNeed).child("objectId");
+                    databaseReference.setValue(idWeNeed);
+                    counter = 0;
                     return true;
+
                 case R.id.action_view_details:
                     Toast.makeText(mContext, "View Details", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(mContext, StudentItemProfile.class);
-                    intent.putExtra(ITEMID,itemId + " " + category);
+                    Log.d("YYYYYYY", idWeNeed + "  " + category);
+                    intent.putExtra(ITEMID,idWeNeed + " " + category);
                     mContext.startActivity(intent);
+                    counter = 0;
 
                     return true;
                 default:

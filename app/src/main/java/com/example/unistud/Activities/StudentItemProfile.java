@@ -65,6 +65,7 @@ public class StudentItemProfile extends AppCompatActivity {
         itemInfo = intent.getStringExtra(ITEMID);
         mItemId = itemInfo.substring(0, itemInfo.indexOf(" "));
         category = itemInfo.substring(itemInfo.indexOf(" ") + 1);
+        Log.d("XXXXXXX", mItemId + "  " + category);
         //Initialize the Database Reference
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Trade").child(category).child(mItemId);
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -84,7 +85,6 @@ public class StudentItemProfile extends AppCompatActivity {
                 mItemCategory.setText(category);
                 mItemDesc.setText(itemDesc);
                 mPrice.setText(price);
-
             }
 
             @Override
