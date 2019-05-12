@@ -112,7 +112,9 @@ public class StudentInternshipProfile extends AppCompatActivity {
             public void onClick(View v) {
                 mProgress.setMessage("Saving the Internship ... ");
                 mProgress.show();
-                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_internships").child(internshipId).child("internship_name");
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_internships").child(internshipId).child("objectId");
+                databaseReference.setValue(internshipId);
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child("Students").child(userId).child("saved_internships").child(internshipId).child("objectTitle");
                 databaseReference.setValue(internshipTitle);
                 mProgress.dismiss();
             }
