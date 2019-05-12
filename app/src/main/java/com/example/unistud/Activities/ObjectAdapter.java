@@ -1,6 +1,7 @@
 package com.example.unistud.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
     private String userId;
     private String id;
     private int pos;
+    public static final String EVENT_ID = "";
 
     //Database References
     private DatabaseReference databaseReference;
@@ -152,6 +154,11 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
             switch (menuItem.getItemId()) {
                 case R.id.action_view_details:
                     Toast.makeText(mContext, "View Details", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, StudentEventProfile_1.class);
+                    intent.putExtra(EVENT_ID,idWeNeed);
+                    //Log.d("IDDDD", idWeNeed);
+                    mContext.startActivity(intent);
+                    counter = 0;
 
                     return true;
                 case R.id.action_remove:
