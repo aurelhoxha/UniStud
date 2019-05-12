@@ -285,7 +285,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child("Organizations").child(userId).exists()){
                     Organization mOrganization = dataSnapshot.child("Organizations").child(userId).getValue(Organization.class);
-                    String mAccountCompleted = mOrganization.getProfile_completed();
+                    String mAccountCompleted = "";
+
+                    if(mOrganization == null){
+                        mAccountCompleted = "true";
+                    }
+                    else {
+                        mAccountCompleted = mOrganization.getProfile_completed();
+                    }
 
                     //Redirect to Company Registration
                     if(mAccountCompleted.equals("false")){
@@ -306,7 +313,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 else {
                     if(dataSnapshot.child("Students").child(userId).exists()){
                         Student mStudent = dataSnapshot.child("Students").child(userId).getValue(Student.class);
-                        String mAccountCompleted = mStudent.getProfile_completed();
+                        String mAccountCompleted = "";
+
+                        if(mStudent == null){
+                            mAccountCompleted = "true";
+                        }
+                        else {
+                            mAccountCompleted = mStudent.getProfile_completed();
+                        }
 
                         //Redirect to Student Registration
                         if(mAccountCompleted.equals("false")){
@@ -321,7 +335,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 finish();
                             }
                         }
-
                         //Redirect to Student HomePage
                         else {
                             Intent intent = new Intent(MainActivity.this, StudentMenuActivity.class);
