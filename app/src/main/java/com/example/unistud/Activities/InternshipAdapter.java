@@ -76,7 +76,7 @@ public class InternshipAdapter extends RecyclerView.Adapter<InternshipAdapter.My
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_trade, popup.getMenu());
+        inflater.inflate(R.menu.menu_profile, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
         popup.show();
     }
@@ -89,11 +89,12 @@ public class InternshipAdapter extends RecyclerView.Adapter<InternshipAdapter.My
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
-                case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                    return true;
                 case R.id.action_view_details:
                     Toast.makeText(mContext, "View Details", Toast.LENGTH_SHORT).show();
+                    return true;
+
+                case R.id.action_remove:
+                    Toast.makeText(mContext, "Remove from favorites", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }
