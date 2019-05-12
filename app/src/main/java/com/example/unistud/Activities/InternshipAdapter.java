@@ -1,7 +1,10 @@
 package com.example.unistud.Activities;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,12 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.unistud.Helpers.Event;
 import com.example.unistud.Helpers.Internship;
 import com.example.unistud.Helpers.Internship;
 import com.example.unistud.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -27,6 +35,21 @@ public class InternshipAdapter extends RecyclerView.Adapter<InternshipAdapter.My
 
     private Context mContext;
     private List<Internship> internshipList;
+    private String internshipId;
+    private String title;
+    private String userId;
+    private int pos;
+    public static final String INTERNSHIP_ID = "";
+
+    //Database References
+    private DatabaseReference databaseReference;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+
+
+    int counter = 0;
+    String idWeNeed;
+    String titleWeNeed;
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -61,6 +84,9 @@ public class InternshipAdapter extends RecyclerView.Adapter<InternshipAdapter.My
         holder.title.setText(internship.getInternshipTitle());
         holder.date.setText(internship.getInternshipDate());
 
+        internshipId = internship.getInternshipId();
+        title = internship.getInternshipTitle();
+
         // loading item cover using Glide library
         Glide.with(mContext).load(internship.getInternshipImage()).into(holder.thumbnail);
 
@@ -68,14 +94,48 @@ public class InternshipAdapter extends RecyclerView.Adapter<InternshipAdapter.My
             @Override
             public void onClick(View view) {
                 showPopupMenu(holder.overflow);
+
+                pos = holder.getAdapterPosition();
+
+                databaseReference = FirebaseDatabase.getInstance().getReference().child("Internships");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot taskSnapshot : dataSnapshot.getChildren()) {
+                                if (counter == pos) {
+                                    Log.d("RIGHTTTTTT", counter + " " + pos);
+                                    Internship a = taskSnapshot.getValue(Internship.class);
+                                    idWeNeed = a.getInternshipId();
+                                    titleWeNeed = a.getInternshipTitle();
+                                    break;
+                                } else {
+                                    Log.d("DIDDDD IT", counter + " ");
+                                    counter++;
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                Log.d("Positionnn", pos + "");
+                //category= holder.getCategory();
             }
+
         });
+
     }
 
     private void showPopupMenu(View view) {
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
+        counter=0;
         inflater.inflate(R.menu.menu_profile, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
         popup.show();
@@ -91,6 +151,12 @@ public class InternshipAdapter extends RecyclerView.Adapter<InternshipAdapter.My
             switch (menuItem.getItemId()) {
                 case R.id.action_view_details:
                     Toast.makeText(mContext, "View Details", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mContext, StudentInternshipProfile_1.class);
+                    intent.putExtra(INTERNSHIP_ID,idWeNeed);
+                    //Log.d("IDDDD", idWeNeed);
+                    mContext.startActivity(intent);
+                    counter = 0;
+
                     return true;
 
                 case R.id.action_remove:

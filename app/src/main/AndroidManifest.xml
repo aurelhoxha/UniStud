@@ -64,6 +64,7 @@
         <activity android:name=".Activities.MyMessages"></activity>
         <activity android:name=".Activities.StudentUserList"></activity>
         <activity android:name=".Activities.StudentEventProfile_1"></activity>
+        <activity android:name=".Activities.StudentInternshipProfile_1"></activity>
         <activity android:name=".Activities.EditUserProfile"
                   android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".Activities.StudentItemProfile"></activity>
